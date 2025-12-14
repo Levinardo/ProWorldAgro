@@ -402,6 +402,57 @@
   font-weight: 500;
 }
 
+.firebase-error-message {
+  margin: 2rem 0;
+  background: rgba(255, 193, 7, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  color: rgba(255, 193, 7, 0.9);
+  padding: 2rem;
+}
+
+.error-content {
+  text-align: center;
+}
+
+.error-content h4 {
+  color: rgba(255, 193, 7, 0.9);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.error-content p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.error-content ol {
+  text-align: left;
+  display: inline-block;
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+.error-content li {
+  margin-bottom: 0.5rem;
+}
+
+.error-content code {
+  background: rgba(255, 193, 7, 0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9em;
+}
+
+.error-content a {
+  color: rgba(0, 123, 255, 0.9);
+  text-decoration: underline;
+}
+
+.error-content a:hover {
+  color: rgba(0, 123, 255, 1);
+}
+
 /* Registration Cards */
 .registrations-list {
   display: flex;

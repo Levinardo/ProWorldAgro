@@ -301,7 +301,7 @@ const Registration = () => {
                 <span className="status-text">
                   {firebaseConnected
                     ? 'Database Connected'
-                    : 'Database Connection Failed - Check Firebase Configuration'
+                    : 'Database Connection Failed - Environment variables may not be configured in Vercel'
                   }
                 </span>
               </div>

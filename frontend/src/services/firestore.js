@@ -1,9 +1,9 @@
-import { 
-  collection, 
-  addDoc, 
-  getDocs, 
-  doc, 
-  updateDoc, 
+import {
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  updateDoc,
   deleteDoc,
   query,
   where,
@@ -11,6 +11,15 @@ import {
   serverTimestamp
 } from 'firebase/firestore';
 import { db } from './firebase';
+
+// Check if Firebase is available
+const isFirebaseAvailable = () => {
+  if (!db) {
+    console.error('Firebase is not initialized. Please check your environment variables.');
+    return false;
+  }
+  return true;
+};
 
 // Collection names
 export const COLLECTIONS = {
@@ -24,6 +33,10 @@ export const COLLECTIONS = {
  * Save a registration to Firestore
  */
 export const saveRegistration = async (registrationData) => {
+  if (!isFirebaseAvailable()) {
+    return { success: false, error: 'Database not available. Please check Firebase configuration.' };
+  }
+
   try {
     const docRef = await addDoc(collection(db, COLLECTIONS.REGISTRATIONS), {
       ...registrationData,
@@ -42,6 +55,10 @@ export const saveRegistration = async (registrationData) => {
  * Get all registrations
  */
 export const getRegistrations = async () => {
+  if (!isFirebaseAvailable()) {
+    return { success: false, error: 'Database not available. Please check Firebase configuration.', data: [] };
+  }
+
   try {
     const q = query(
       collection(db, COLLECTIONS.REGISTRATIONS),
@@ -55,7 +72,7 @@ export const getRegistrations = async () => {
     return { success: true, data: registrations };
   } catch (error) {
     console.error('Error getting registrations:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: error.message, data: [] };
   }
 };
 
@@ -63,6 +80,10 @@ export const getRegistrations = async () => {
  * Get registrations with filtering
  */
 export const getFilteredRegistrations = async (filters = {}) => {
+  if (!isFirebaseAvailable()) {
+    return { success: false, error: 'Database not available. Please check Firebase configuration.', data: [] };
+  }
+
   try {
     let q = collection(db, COLLECTIONS.REGISTRATIONS);
 
@@ -94,7 +115,7 @@ export const getFilteredRegistrations = async (filters = {}) => {
     return { success: true, data: registrations };
   } catch (error) {
     console.error('Error getting filtered registrations:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: error.message, data: [] };
   }
 };
 
@@ -102,6 +123,10 @@ export const getFilteredRegistrations = async (filters = {}) => {
  * Get registrations by email
  */
 export const getRegistrationsByEmail = async (email) => {
+  if (!isFirebaseAvailable()) {
+    return { success: false, error: 'Database not available. Please check Firebase configuration.', data: [] };
+  }
+
   try {
     const q = query(
       collection(db, COLLECTIONS.REGISTRATIONS),
@@ -116,7 +141,7 @@ export const getRegistrationsByEmail = async (email) => {
     return { success: true, data: registrations };
   } catch (error) {
     console.error('Error getting registrations by email:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: error.message, data: [] };
   }
 };
 
@@ -124,6 +149,10 @@ export const getRegistrationsByEmail = async (email) => {
  * Save an event to Firestore
  */
 export const saveEvent = async (eventData) => {
+  if (!isFirebaseAvailable()) {
+    return { success: false, error: 'Database not available. Please check Firebase configuration.' };
+  }
+
   try {
     const docRef = await addDoc(collection(db, COLLECTIONS.EVENTS), {
       ...eventData,
@@ -141,6 +170,10 @@ export const saveEvent = async (eventData) => {
  * Get all events
  */
 export const getEvents = async () => {
+  if (!isFirebaseAvailable()) {
+    return { success: false, error: 'Database not available. Please check Firebase configuration.', data: [] };
+  }
+
   try {
     const q = query(
       collection(db, COLLECTIONS.EVENTS),
@@ -154,7 +187,7 @@ export const getEvents = async () => {
     return { success: true, data: events };
   } catch (error) {
     console.error('Error getting events:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: error.message, data: [] };
   }
 };
 
@@ -162,6 +195,10 @@ export const getEvents = async () => {
  * Update a document
  */
 export const updateDocument = async (collectionName, docId, data) => {
+  if (!isFirebaseAvailable()) {
+    return { success: false, error: 'Database not available. Please check Firebase configuration.' };
+  }
+
   try {
     const docRef = doc(db, collectionName, docId);
     await updateDoc(docRef, {
@@ -179,6 +216,10 @@ export const updateDocument = async (collectionName, docId, data) => {
  * Update registration status
  */
 export const updateRegistrationStatus = async (registrationId, status, adminNote = '') => {
+  if (!isFirebaseAvailable()) {
+    return { success: false, error: 'Database not available. Please check Firebase configuration.' };
+  }
+
   try {
     const updateData = {
       status,
@@ -196,6 +237,10 @@ export const updateRegistrationStatus = async (registrationId, status, adminNote
  * Delete a document
  */
 export const deleteDocument = async (collectionName, docId) => {
+  if (!isFirebaseAvailable()) {
+    return { success: false, error: 'Database not available. Please check Firebase configuration.' };
+  }
+
   try {
     await deleteDoc(doc(db, collectionName, docId));
     return { success: true };
@@ -209,6 +254,10 @@ export const deleteDocument = async (collectionName, docId) => {
  * Admin authentication
  */
 export const authenticateAdmin = async (email, password) => {
+  if (!isFirebaseAvailable()) {
+    return { success: false, error: 'Database not available. Please check Firebase configuration.' };
+  }
+
   try {
     const q = query(
       collection(db, COLLECTIONS.ADMINS),
@@ -231,6 +280,10 @@ export const authenticateAdmin = async (email, password) => {
  * Initialize default admin (run this once to create admin user)
  */
 export const initializeAdmin = async () => {
+  if (!isFirebaseAvailable()) {
+    return { success: false, error: 'Database not available. Please check Firebase configuration.' };
+  }
+
   try {
     const adminData = {
       email: 'admin@agentofdocumentation.pk',

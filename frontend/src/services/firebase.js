@@ -14,13 +14,37 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// Check if Firebase config is properly set
+const isFirebaseConfigured = Object.values(firebaseConfig).every(value =>
+  value !== undefined && value !== null && value !== ''
+);
 
-// Initialize Firebase services
-export const db = getFirestore(app);
-export const auth = getAuth(app);
-export const analytics = getAnalytics(app);
+let app, db, auth, analytics;
+
+try {
+  if (isFirebaseConfigured) {
+    // Initialize Firebase
+    app = initializeApp(firebaseConfig);
+
+    // Initialize Firebase services
+    db = getFirestore(app);
+    auth = getAuth(app);
+    analytics = getAnalytics(app);
+
+    console.log('Firebase initialized successfully');
+  } else {
+    console.warn('Firebase configuration incomplete. Some features may not work.');
+    console.log('Missing environment variables:', Object.entries(firebaseConfig)
+      .filter(([key, value]) => !value)
+      .map(([key]) => key)
+    );
+  }
+} catch (error) {
+  console.error('Failed to initialize Firebase:', error);
+}
+
+// Export Firebase services (may be undefined if not configured)
+export { db, auth, analytics };
 
 // Test Firebase connection
 export const testFirebaseConnection = async () => {

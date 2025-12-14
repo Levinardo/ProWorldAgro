@@ -25,6 +25,7 @@ const Admin = () => {
     endDate: ''
   });
   const [isLoadingRegistrations, setIsLoadingRegistrations] = useState(false);
+  const [firebaseError, setFirebaseError] = useState(false);
 
   // Check if admin is already logged in
   useEffect(() => {
@@ -74,15 +75,18 @@ const Admin = () => {
 
   const loadRegistrations = async () => {
     setIsLoadingRegistrations(true);
+    setFirebaseError(false);
     try {
       const result = await getFilteredRegistrations();
       if (result.success) {
         setRegistrations(result.data);
         applyFilters(result.data, activeTab, filters);
       } else {
-        toast.error('Failed to load registrations');
+        setFirebaseError(true);
+        toast.error(result.error || 'Failed to load registrations');
       }
     } catch (error) {
+      setFirebaseError(true);
       toast.error('Error loading registrations');
     } finally {
       setIsLoadingRegistrations(false);
@@ -295,7 +299,20 @@ const Admin = () => {
               </button>
             </div>
 
-            {isLoadingRegistrations ? (
+            {firebaseError ? (
+              <div className="firebase-error-message glass-card">
+                <div className="error-content">
+                  <h4>⚠️ Database Configuration Required</h4>
+                  <p>Firebase is not properly configured. To enable full functionality:</p>
+                  <ol>
+                    <li>Go to your <a href="https://vercel.com/levinardos-projects/pro-world-agro/settings/environment-variables" target="_blank" rel="noopener noreferrer">Vercel Dashboard</a></li>
+                    <li>Add the 7 Firebase environment variables listed in <code>VERCEL_ENV_SETUP.md</code></li>
+                    <li>Redeploy the application</li>
+                  </ol>
+                  <p>In the meantime, you can still access the admin interface and explore the UI.</p>
+                </div>
+              </div>
+            ) : isLoadingRegistrations ? (
               <div className="loading">Loading registrations...</div>
             ) : filteredRegistrations.length === 0 ? (
               <div className="no-registrations">No registrations found</div>
