@@ -9,6 +9,7 @@ import AgentOfDocumentation from './pages/AgentOfDocumentation';
 import Registration from './pages/Registration';
 import Blogs from './pages/Blogs';
 import UpcomingEvents from './pages/UpcomingEvents';
+import Admin from './pages/Admin';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/registration" element={<Registration />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/upcoming-events" element={<UpcomingEvents />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
         <Footer />
         <Toaster

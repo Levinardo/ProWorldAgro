@@ -132,12 +132,22 @@ const Admin = () => {
 
   const handleSectionChange = (sectionId) => {
     setActiveSection(sectionId);
+    // Close sidebar on mobile after navigation
+    if (window.innerWidth <= 768) {
+      setSidebarOpen(false);
+    }
+  };
+
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      setSidebarOpen(false);
+    }
   };
 
   const renderDashboardContent = () => {
     switch (activeSection) {
       case 'dashboard':
-        return <DashboardOverview />;
+        return <DashboardOverview onSectionChange={handleSectionChange} />;
       case 'registrations':
         return <RegistrationManagement />;
       case 'analytics':
@@ -145,19 +155,25 @@ const Admin = () => {
       case 'settings':
         return <SettingsView onInitializeAdmin={initializeAdmin} />;
       default:
-        return <DashboardOverview />;
+        return <DashboardOverview onSectionChange={handleSectionChange} />;
     }
   };
 
   return (
     <div className="admin-dashboard">
       {/* Sidebar */}
-      <div className={`admin-sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
+      <div
+        className={`admin-sidebar ${sidebarOpen ? 'open' : 'closed'}`}
+        onClick={handleBackdropClick}
+      >
         <div className="sidebar-header">
           <div className="sidebar-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>
-            {sidebarOpen ? '◁' : '▷'}
+            <span></span>
           </div>
           <div className="sidebar-brand">
+            <div className="sidebar-close-mobile" onClick={() => setSidebarOpen(false)}>
+              ✕
+            </div>
             <div className="flag-emoji">🇵🇰</div>
             <h3>Admin Panel</h3>
           </div>
@@ -190,6 +206,11 @@ const Admin = () => {
       {/* Main Content */}
       <div className={`admin-main ${sidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
         <div className="main-header">
+          <div
+            className="mobile-menu-toggle"
+            onClick={() => setSidebarOpen(true)}
+            aria-label="Open menu"
+          ></div>
           <h1>{NAV_ITEMS.find(item => item.id === activeSection)?.label || 'Dashboard'}</h1>
           <div className="header-actions">
             <button onClick={handleLogout} className="mobile-logout">
@@ -207,7 +228,7 @@ const Admin = () => {
 };
 
 // Dashboard Overview Component
-const DashboardOverview = () => {
+const DashboardOverview = ({ onSectionChange }) => {
   return (
     <div className="dashboard-overview">
       <div className="stats-grid">
@@ -244,10 +265,10 @@ const DashboardOverview = () => {
       <div className="quick-actions glass-card">
         <h3>Quick Actions</h3>
         <div className="action-buttons">
-          <button className="action-btn primary" onClick={() => window.location.hash = '#registrations'}>
+          <button className="action-btn primary" onClick={() => onSectionChange('registrations')}>
             👥 View Registrations
           </button>
-          <button className="action-btn secondary" onClick={() => window.location.hash = '#analytics'}>
+          <button className="action-btn secondary" onClick={() => onSectionChange('analytics')}>
             📊 View Analytics
           </button>
         </div>
