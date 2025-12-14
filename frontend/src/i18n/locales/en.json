@@ -17,7 +17,22 @@
     "feature2": "Data Analytics",
     "feature2Desc": "Insights to improve your agricultural output",
     "feature3": "Community Support",
-    "feature3Desc": "Connect with farmers and experts worldwide"
+    "feature3Desc": "Connect with farmers and experts worldwide",
+    "agentDocSubtitle": "Professional Support for Pakistani Investors & Visitors",
+    "agentDocService1": "Visa Documentation",
+    "agentDocService1Desc": "Complete visa application support and guidance",
+    "agentDocService2": "Event Registration",
+    "agentDocService2Desc": "Seamless registration for international livestock events",
+    "agentDocService3": "Business Coordination",
+    "agentDocService3Desc": "Professional networking and partnership facilitation",
+    "agentDocService4": "Documentation Support",
+    "agentDocService4Desc": "Complete documentation package for your visit",
+    "registrationSubtitle": "Register for our professional documentation services",
+    "regBenefit1": "Professional visa documentation support",
+    "regBenefit2": "Complete event registration assistance",
+    "regBenefit3": "Expert guidance for international events",
+    "regBenefit4": "Time-saving coordination services",
+    "regBenefit5": "Increased visa success rate"
   },
   "about": {
     "title": "About ProWorldAgro",
@@ -78,7 +93,15 @@
     "pleaseFillField": "Please fill in this field",
     "validEmail": "Please enter a valid email address",
     "pleaseSelectRequestType": "Please select a request type",
-    "acceptPrivacy": "You must accept the privacy policy"
+    "acceptPrivacy": "You must accept the privacy policy",
+    "additionalParticipants": "Additional Participants",
+    "addParticipant": "Add Participant",
+    "additionalParticipantsDesc": "Add other participants who will be attending with you. Include their full name and passport number.",
+    "participant": "Participant",
+    "participantName": "Full Name",
+    "participantNamePlaceholder": "Enter full name",
+    "passportNumber": "Passport Number",
+    "passportPlaceholder": "Enter passport number"
   },
   "events": {
     "title": "Upcoming Events",
@@ -94,7 +117,9 @@
     "loading": "Loading...",
     "error": "Error",
     "success": "Success",
-    "explore": "Explore"
+    "explore": "Explore",
+    "learnMore": "Learn More",
+    "registerNow": "Register Now"
   },
   "footer": {
     "quickMenu": "Quick Menu",

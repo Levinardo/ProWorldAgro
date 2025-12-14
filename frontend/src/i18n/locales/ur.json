@@ -17,7 +17,22 @@
     "feature2": "ڈیٹا تجزیہ",
     "feature2Desc": "آپ کی زرعی پیداوار کو بہتر بنانے کے لیے بصیرت",
     "feature3": "کمیونٹی سپورٹ",
-    "feature3Desc": "دنیا بھر کے کسانوں اور ماہرین سے رابطہ قائم کریں"
+    "feature3Desc": "دنیا بھر کے کسانوں اور ماہرین سے رابطہ قائم کریں",
+    "agentDocSubtitle": "پاکستانی سرمایہ کاروں اور زائرین کے لیے پیشہ ورانہ مدد",
+    "agentDocService1": "ویزا دستاویزات",
+    "agentDocService1Desc": "مکمل ویزا درخواست کی مدد اور رہنمائی",
+    "agentDocService2": "ایونٹ رجسٹریشن",
+    "agentDocService2Desc": "بین الاقوامی مویشی ایونٹس کے لیے بے عیب رجسٹریشن",
+    "agentDocService3": "کاروباری کوآرڈینیشن",
+    "agentDocService3Desc": "پیشہ ورانہ نیٹ ورکنگ اور شراکت داری کی سہولت",
+    "agentDocService4": "دستاویزات کی مدد",
+    "agentDocService4Desc": "آپ کے دورے کے لیے مکمل دستاویزات پیکیج",
+    "registrationSubtitle": "ہماری پیشہ ورانہ دستاویزات کی خدمات کے لیے رجسٹر کریں",
+    "regBenefit1": "پیشہ ورانہ ویزا دستاویزات کی مدد",
+    "regBenefit2": "مکمل ایونٹ رجسٹریشن کی مدد",
+    "regBenefit3": "بین الاقوامی تقریبات کے لیے ماہرانہ رہنمائی",
+    "regBenefit4": "وقت بچانے والی کوآرڈینیشن خدمات",
+    "regBenefit5": "ویزا کی کامیابی کی بڑھتی ہوئی شرح"
   },
   "about": {
     "title": "ProWorldAgro کے بارے میں",
@@ -78,7 +93,15 @@
     "pleaseFillField": "براہ کرم یہ فیلڈ بھریں",
     "validEmail": "براہ کرم ایک درست ای میل پتہ درج کریں",
     "pleaseSelectRequestType": "براہ کرم درخواست کی قسم منتخب کریں",
-    "acceptPrivacy": "آپ کو پرائیویسی پالیسی قبول کرنی ہوگی"
+    "acceptPrivacy": "آپ کو پرائیویسی پالیسی قبول کرنی ہوگی",
+    "additionalParticipants": "اضافی شرکاء",
+    "addParticipant": "شرکاء شامل کریں",
+    "additionalParticipantsDesc": "دوسرے شرکاء شامل کریں جو آپ کے ساتھ شرکت کریں گے۔ ان کا مکمل نام اور پاسپورٹ نمبر شامل کریں۔",
+    "participant": "شرکاء",
+    "participantName": "مکمل نام",
+    "participantNamePlaceholder": "مکمل نام درج کریں",
+    "passportNumber": "پاسپورٹ نمبر",
+    "passportPlaceholder": "پاسپورٹ نمبر درج کریں"
   },
   "events": {
     "title": "آنے والے ایونٹس",
@@ -94,7 +117,9 @@
     "loading": "لوڈ ہو رہا ہے...",
     "error": "خرابی",
     "success": "کامیابی",
-    "explore": "دریافت کریں"
+    "explore": "دریافت کریں",
+    "learnMore": "مزید جانیں",
+    "registerNow": "ابھی رجسٹر کریں"
   },
   "footer": {
     "quickMenu": "فوری مینو",

@@ -112,3 +112,5 @@ const EventCarousel = ({ items = [] }) => {
 
 export default EventCarousel;
 
+
+

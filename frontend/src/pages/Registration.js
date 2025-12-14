@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import toast from 'react-hot-toast';
+import { saveRegistration } from '../services/firestore';
+import { testFirebaseConnection } from '../services/firebase';
 import './Registration.css';
 
 const Registration = () => {
@@ -21,7 +24,17 @@ const Registration = () => {
 
   const [additionalParticipants, setAdditionalParticipants] = useState([]);
   const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [firebaseConnected, setFirebaseConnected] = useState(null);
+
+  // Test Firebase connection on component mount
+  useEffect(() => {
+    const checkFirebaseConnection = async () => {
+      const isConnected = await testFirebaseConnection();
+      setFirebaseConnected(isConnected);
+    };
+    checkFirebaseConnection();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -135,37 +148,84 @@ const Registration = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (validate()) {
-      // Here you would typically send the data to your backend
+      // Check Firebase connection before submitting
+      if (firebaseConnected === false) {
+        setErrors({ submit: 'Database connection failed. Please check your Firebase configuration.' });
+        return;
+      }
+
+      setIsSubmitting(true);
+      
+      try {
       const submissionData = {
         ...formData,
-        additionalParticipants: additionalParticipants
+          additionalParticipants: additionalParticipants,
+          submittedAt: new Date().toISOString()
       };
-      console.log('Form submitted:', submissionData);
-      setSubmitted(true);
-      
-      // Reset form after 5 seconds
-      setTimeout(() => {
-        setSubmitted(false);
-        setFormData({
-          realLegalStatus: '',
-          name: '',
-          surname: '',
-          phone: '',
-          email: '',
-          institutionName: '',
-          requestType: '',
-          eventDate: '',
-          services: [],
-          message: '',
-          consentCommercial: false,
-          consentPrivacy: false
+        
+        const result = await saveRegistration(submissionData);
+        
+        if (result.success) {
+          // Show success toast notification
+          toast.success(t('registration.successMessage') || 'Registration submitted successfully!', {
+            duration: 5000,
+            style: {
+              background: 'rgba(76, 175, 80, 0.95)',
+              backdropFilter: 'blur(10px)',
+              color: '#fff',
+              borderRadius: '8px',
+              border: '1px solid rgba(76, 175, 80, 0.3)',
+            },
+          });
+
+          // Reset form immediately
+          setFormData({
+            realLegalStatus: '',
+            name: '',
+            surname: '',
+            phone: '',
+            email: '',
+            institutionName: '',
+            requestType: '',
+            eventDate: '',
+            services: [],
+            message: '',
+            consentCommercial: false,
+            consentPrivacy: false
+          });
+          setAdditionalParticipants([]);
+        } else {
+          // Show error toast notification
+          toast.error(result.error || 'Failed to submit registration. Please try again.', {
+            duration: 5000,
+            style: {
+              background: 'rgba(244, 67, 54, 0.95)',
+              backdropFilter: 'blur(10px)',
+              color: '#fff',
+              borderRadius: '8px',
+              border: '1px solid rgba(244, 67, 54, 0.3)',
+            },
+          });
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        toast.error('An error occurred. Please try again later.', {
+          duration: 5000,
+          style: {
+            background: 'rgba(244, 67, 54, 0.95)',
+            backdropFilter: 'blur(10px)',
+            color: '#fff',
+            borderRadius: '8px',
+            border: '1px solid rgba(244, 67, 54, 0.3)',
+          },
         });
-        setAdditionalParticipants([]);
-      }, 5000);
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -189,13 +249,6 @@ const Registration = () => {
           <h2>{t('registration.subtitle')}</h2>
           <p className="subtitle">{t('registration.description')}</p>
         </div>
-
-        {submitted && (
-          <div className="success-message glass-card">
-            <h3>{t('registration.successTitle')}</h3>
-            <p>{t('registration.successMessage')}</p>
-          </div>
-        )}
 
         <div className="registration-content">
           <div className="registration-info">
@@ -238,6 +291,21 @@ const Registration = () => {
 
           <div className="registration-form-container glass-card">
             <h2 className="form-title">{t('registration.formTitle')}</h2>
+
+            {/* Firebase Connection Status */}
+            {firebaseConnected !== null && (
+              <div className={`connection-status ${firebaseConnected ? 'connected' : 'disconnected'}`}>
+                <span className="status-icon">
+                  {firebaseConnected ? '🟢' : '🔴'}
+                </span>
+                <span className="status-text">
+                  {firebaseConnected
+                    ? 'Database Connected'
+                    : 'Database Connection Failed - Check Firebase Configuration'
+                  }
+                </span>
+              </div>
+            )}
             
             <form onSubmit={handleSubmit} className="registration-form">
               <div className="form-row">
@@ -538,8 +606,12 @@ const Registration = () => {
                 )}
               </div>
 
-              <button type="submit" className="submit-button btn-modern">
-                {t('registration.submit')}
+              <button 
+                type="submit" 
+                className="submit-button btn-modern"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? t('common.loading') || 'Submitting...' : t('registration.submit')}
               </button>
             </form>
           </div>

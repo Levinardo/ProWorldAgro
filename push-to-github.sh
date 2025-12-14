@@ -70,3 +70,5 @@ echo "   2. Set 'production' as the default branch (Settings → Branches)"
 echo "   3. Connect to Vercel for automatic deployments"
 echo ""
 
+
+

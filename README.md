@@ -32,11 +32,9 @@ Agricultural Solutions Platform - A comprehensive web application for agricultur
 - Axios
 - CSS3 with Glassmorphism
 
-### Backend
-- Node.js
-- Express.js
-- MongoDB
-- JWT Authentication
+### Backend & Database
+- Firebase (Firestore)
+- Firebase Authentication (optional)
 
 ## 📁 Project Structure
 
@@ -47,12 +45,8 @@ ProWorldAgro/
 │   │   ├── components/   # Reusable components
 │   │   ├── pages/       # Page components
 │   │   ├── i18n/        # Translation files
-│   │   └── services/    # API services
+│   │   └── services/    # Firebase services
 │   └── public/
-├── backend/           # Node.js backend API
-│   ├── routes/       # API routes
-│   ├── models/       # Database models
-│   └── middleware/   # Express middleware
 └── docs/             # Documentation
 ```
 
@@ -61,7 +55,7 @@ ProWorldAgro/
 ### Prerequisites
 
 - Node.js (v18 or higher)
-- MongoDB (local or Atlas)
+- Firebase account (free tier available)
 - npm or yarn
 
 ### Installation
@@ -78,44 +72,36 @@ ProWorldAgro/
    npm install
    ```
 
-3. **Install backend dependencies**
-   ```bash
-   cd ../backend
-   npm install
-   ```
+3. **Set up Firebase**
+   
+   - Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
+   - Enable Firestore Database
+   - Get your Firebase configuration
+   - See [FIREBASE_SETUP.md](./FIREBASE_SETUP.md) for detailed instructions
 
 4. **Set up environment variables**
    
-   Backend (`backend/.env`):
+   Create `frontend/.env` file:
    ```env
-   PORT=5000
-   MONGODB_URI=your_mongodb_connection_string
-   JWT_SECRET=your_jwt_secret
-   CLIENT_URL=http://localhost:3000
+   REACT_APP_FIREBASE_API_KEY=your-api-key-here
+   REACT_APP_FIREBASE_AUTH_DOMAIN=your-project-id.firebaseapp.com
+   REACT_APP_FIREBASE_PROJECT_ID=your-project-id
+   REACT_APP_FIREBASE_STORAGE_BUCKET=your-project-id.appspot.com
+   REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
+   REACT_APP_FIREBASE_APP_ID=your-app-id
    ```
    
-   Frontend (`frontend/.env`):
-   ```env
-   REACT_APP_API_URL=http://localhost:5000/api
-   ```
+   Copy from `frontend/.env.example` and fill in your Firebase values.
 
 5. **Run the application**
    
-   Frontend (terminal 1):
    ```bash
    cd frontend
-   npm start
-   ```
-   
-   Backend (terminal 2):
-   ```bash
-   cd backend
    npm start
    ```
 
 6. **Open your browser**
    - Frontend: http://localhost:3000
-   - Backend API: http://localhost:5000
 
 ## 📦 Deployment
 
@@ -160,10 +146,10 @@ git push origin production
 ## 📚 Documentation
 
 - [Setup Guide](./SETUP.md)
+- [Firebase Setup Guide](./FIREBASE_SETUP.md)
 - [Deployment Guide](./DEPLOYMENT.md)
 - [Quick Deploy](./QUICK_DEPLOY.md)
 - [GitHub Setup](./GITHUB_SETUP.md)
-- [MongoDB Atlas Setup](./MONGODB_ATLAS_SETUP.md)
 
 ## 🤝 Contributing
 
@@ -185,8 +171,11 @@ ProWorldAgro Team
 
 - React Community
 - Vercel for hosting
-- MongoDB Atlas
+- Firebase for backend services
 
 ---
 
 **Made with ❤️ for the agricultural community**
+
+
+
