@@ -6,6 +6,7 @@
 
 html {
   scroll-behavior: smooth;
+  background: rgba(55, 58, 54, 1);
 }
 
 body {
@@ -15,7 +16,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2d7a4e 0%, #4a9d6a 100%);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
@@ -29,9 +30,9 @@ body::before {
   width: 100%;
   height: 100%;
   background: 
-    radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 40% 20%, rgba(120, 200, 255, 0.2) 0%, transparent 50%);
+    radial-gradient(circle at 20% 50%, rgba(45, 122, 78, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(74, 157, 106, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(139, 111, 71, 0.2) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
 }

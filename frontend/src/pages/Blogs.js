@@ -102,8 +102,12 @@ const Blogs = () => {
     <div className="blogs">
       <div className="container">
         <div className="blogs-header glass-card">
-          <h1>Agricultural Blogs & Insights</h1>
-          <p>Stay updated with the latest trends, tips, and innovations in agriculture</p>
+          <div className="blogs-header-row blogs-header-row-1">
+            <h1>Agricultural News & Insights</h1>
+          </div>
+          <div className="blogs-header-row blogs-header-row-2">
+            <p>Stay updated with the latest trends, tips, and innovations in agriculture</p>
+          </div>
         </div>
         <div className="blogs-grid">
           {blogs.map(blog => (

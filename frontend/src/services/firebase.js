@@ -58,10 +58,15 @@ try {
     console.log('📊 Firestore database reference:', db ? 'Available' : 'Not available');
   } else {
     console.warn('⚠️ Firebase configuration incomplete. Some features may not work.');
-    console.log('Missing environment variables:', Object.entries(firebaseConfig)
-      .filter(([key, value]) => !value)
-      .map(([key]) => key)
-    );
+    const missingVars = Object.entries(firebaseConfig)
+      .filter(([key, value]) => !value || value === undefined || value === null || value === '')
+      .map(([key]) => key);
+    console.error('❌ Missing environment variables:', missingVars);
+    console.error('📋 All config values:', Object.entries(firebaseConfig).map(([key, value]) => ({
+      key,
+      hasValue: !!value,
+      valueLength: value ? value.length : 0
+    })));
   }
 } catch (error) {
   console.error('❌ Failed to initialize Firebase:', error);

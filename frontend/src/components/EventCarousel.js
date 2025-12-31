@@ -11,7 +11,7 @@ const EventCarousel = ({ items = [] }) => {
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
-    }, 5000); // Change slide every 5 seconds
+    }, 3000); // Change slide every 3 seconds
 
     return () => clearInterval(interval);
   }, [isAutoPlaying, items.length]);
@@ -61,17 +61,21 @@ const EventCarousel = ({ items = [] }) => {
         <div className="carousel-slide">
           {currentItem.type === 'video' ? (
             <video 
+              key={currentIndex}
               className="carousel-media" 
               src={currentItem.url} 
               controls
               autoPlay
               muted
               loop
+              playsInline
+              poster={currentItem.thumbnail || currentItem.url}
             >
               Your browser does not support the video tag.
             </video>
           ) : (
             <img 
+              key={currentIndex}
               className="carousel-media" 
               src={currentItem.url} 
               alt={currentItem.title || 'Event image'} 
@@ -81,6 +85,12 @@ const EventCarousel = ({ items = [] }) => {
             <div className="carousel-caption">
               <h3>{currentItem.title}</h3>
               {currentItem.description && <p>{currentItem.description}</p>}
+              {currentItem.photographer && currentItem.photographer.trim() && (
+                <div className="carousel-photographer">
+                  <span className="photographer-label">Photo by:</span>
+                  <span className="photographer-name">{currentItem.photographer}</span>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -111,6 +121,7 @@ const EventCarousel = ({ items = [] }) => {
 };
 
 export default EventCarousel;
+
 
 
 

@@ -1,14 +1,16 @@
 {
   "nav": {
     "home": "Home",
+    "officialPartner": "Official Partner",
+    "whyVisit": "Why Visit?",
     "about": "About Us",
     "agentOfDocumentation": "Agent of Documentation",
     "registration": "Registration",
-    "blogs": "Blogs",
+    "blogs": "News",
     "upcomingEvents": "Upcoming Events"
   },
   "home": {
-    "title": "Welcome to ProWorldAgro",
+    "title": "Welcome to Livestock Professionals",
     "subtitle": "Your comprehensive agricultural solutions platform",
     "heroTitle": "Transforming Agriculture",
     "heroSubtitle": "Empowering farmers with modern solutions",
@@ -35,13 +37,13 @@
     "regBenefit5": "Increased visa success rate"
   },
   "about": {
-    "title": "About ProWorldAgro",
-    "description": "This is the about page of ProWorldAgro application."
+    "title": "About Livestock Professionals",
+    "description": "This is the about page of Livestock Professionals application."
   },
   "registration": {
-    "title": "Agent of Documentation – Pakistan",
+    "title": "Sommet de l'Élevage – Registration",
     "subtitle": "Registration Form",
-    "description": "Complete the form below to register for our services",
+    "description": "Complete the form below to register for Sommet de l'Élevage",
     "contactInfo": "Contact Information",
     "officeLocation": "Office Location",
     "email": "Email",
@@ -52,7 +54,7 @@
     "benefit3": "Expert guidance for international events",
     "benefit4": "Time-saving coordination services",
     "benefit5": "Increased visa success rate",
-    "formTitle": "AGENT OF DOCUMENTATION | REGISTRATION FORM",
+    "formTitle": "SOMMET DE L'ÉLEVAGE | REGISTRATION FORM",
     "realLegalStatus": "YOUR REAL | LEGAL STATUS",
     "selectStatus": "Select Status",
     "individual": "Individual",
@@ -82,7 +84,7 @@
     "service7": "Translation & Communication",
     "service8": "Attendance Certificate & Reimbursement",
     "specialRequest": "YOUR SPECIAL REQUEST OR MESSAGE",
-    "commercialConsent": "I hereby freely accept and approve the sending of commercial electronic messages to me for the purpose of being informed about all kinds of products and services offered by Agent of Documentation and the latest announcements, celebrating my special days, conducting surveys, advertisements, campaigns, promotions and publicity.",
+    "commercialConsent": "I hereby freely accept and approve the sending of commercial electronic messages to me for the purpose of being informed about all kinds of products and services offered by Sommet de l'Élevage and the latest announcements, celebrating my special days, conducting surveys, advertisements, campaigns, promotions and publicity.",
     "privacyConsent": "I have read the Privacy and Data Processing Policy and the Explicit Consent and Information Text and I accept and approve all the terms with my free will.",
     "submit": "SEND YOUR REQUEST",
     "successTitle": "✓ Registration Submitted Successfully!",
@@ -120,6 +122,64 @@
     "explore": "Explore",
     "learnMore": "Learn More",
     "registerNow": "Register Now"
+  },
+  "officialPartner": {
+    "title": "Pakistan × Sommet de l'Élevage",
+    "subtitle": "Pakistan is the official partner with Sommet de l'Élevage — building stronger international connections in sustainable livestock and agriculture.",
+    "roleTitle": "Official Painter & Agent of Documentation",
+    "roleKicker": "For Pakistan",
+    "roleDescription": "We are proud to serve as the official painter and agent of documentation for Pakistan for the world's number one suitable livestock show, held every year in October in Clermont-Ferrand, France.",
+    "roleService1": "Official documentation services for Pakistani participants",
+    "roleService2": "Professional painting and artistic representation",
+    "roleService3": "Annual event coordination in Clermont-Ferrand, France",
+    "roleService4": "World-class livestock exhibition support"
+  },
+  "whyVisit": {
+    "title": "Why visit?",
+    "subtitle": "A unique experience for international visitors",
+    "welcome": {
+      "title": "Welcome VIP Services",
+      "freeEntry": "Free entry",
+      "businessClub": "Access to the International Business Club",
+      "multilingual": "Multilingual welcome",
+      "interpreters": "Interpreters available",
+      "guidedTours": "Guided tours of the trade show",
+      "foodArea": "Food area",
+      "internet": "Internet access",
+      "meetingRoom": "Meeting room",
+      "prayerRoom": "Prayer room"
+    },
+    "livestock": {
+      "title": "The excellence of French livestock",
+      "eliteAnimals": "elite animals in competition",
+      "breeds": "cattle, sheep, goat, and horse breeds",
+      "competitions": "National competitions: Charolais and Simmental",
+      "auctions": "Livestock auctions"
+    },
+    "farmTours": {
+      "title": "Farm Tours",
+      "visits": "Visits to farms and agro-industrial facilities",
+      "guidedTours": "guided tours with technicians and interpreters",
+      "locations": "Farms, slaughterhouses, cattle export centers, research institutes, biogas units"
+    },
+    "event": {
+      "title": "A high-level event",
+      "exhibitors": "exposants de 35 pays",
+      "visitors": "visiteurs professionnels",
+      "international": "internationaux",
+      "countries": "pays",
+      "conferences": "conférences sur les grandes thématiques agricoles",
+      "b2b": "Rencontres B2B et opportunités de partenariats commerciaux"
+    },
+    "access": {
+      "title": "Easy access and stay",
+      "airports": "Nearby international airports",
+      "airportsDesc": "Clermont-Ferrand, Lyon",
+      "shuttles": "Free shuttles",
+      "shuttlesDesc": "From the train station, airport, and city centers of Clermont, Vichy, Royat, and Châtel-Guyon",
+      "accommodation": "Best accommodation offers",
+      "accommodationDesc": "With Revolugo, personalized lodging solutions with AGRILYS and the Tourist Office"
+    }
   },
   "footer": {
     "quickMenu": "Quick Menu",

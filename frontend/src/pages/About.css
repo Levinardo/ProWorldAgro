@@ -3,6 +3,13 @@
   min-height: calc(100vh - 80px);
 }
 
+/* Override glass-card background to match navbar grey */
+.about .glass-card {
+  background: rgba(55, 58, 54, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
 .about .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -12,7 +19,12 @@
 .about-hero {
   text-align: center;
   padding: 4rem 2rem;
+  margin-top: 5rem;
   margin-bottom: 3rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .about-hero h1 {
@@ -27,18 +39,26 @@
   font-size: 1.25rem;
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.8;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .about-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+  margin-top: 5rem;
 }
 
 .about-card {
   padding: 2.5rem;
   text-align: center;
   transition: all var(--transition-normal);
+  box-sizing: border-box;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .about-card:hover {
@@ -56,12 +76,19 @@
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .about-map-section {
-  margin-top: 3rem;
+  margin-top: 5rem;
   padding: 2.5rem;
   text-align: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .about-map-section h2 {

@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className="navbar-content">
         <Link to="/" className="navbar-brand">
           <span className="brand-icon">🌾</span>
-          <span className="brand-text">ProWorldAgro</span>
+          <span className="brand-text">Livestock Professionals</span>
         </Link>
         
         <button 
@@ -74,6 +74,15 @@ const Navbar = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t('nav.upcomingEvents')}
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/why-visit" 
+                className={isActive('/why-visit') ? 'active' : ''}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t('nav.whyVisit')}
               </Link>
             </li>
             <li>

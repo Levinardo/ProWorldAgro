@@ -1,0 +1,333 @@
+.why-visit-page {
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  padding-top: 80px;
+}
+
+/* Override glass-card background to match navbar grey */
+.why-visit-page .glass-card {
+  background: rgba(55, 58, 54, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.why-visit-hero {
+  padding: 4rem 0;
+  margin-bottom: 3rem;
+}
+
+.why-visit-hero-content {
+  text-align: center;
+  padding: 3rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.why-visit-title {
+  font-size: 3rem;
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.why-visit-subtitle {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+}
+
+.why-visit-section {
+  margin-bottom: 4rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: var(--text-light);
+  margin: 0;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.section-icon {
+  font-size: 2.5rem;
+}
+
+/* VIP Services Grid */
+.vip-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.vip-service-card {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: all var(--transition-normal);
+  border-radius: var(--radius-lg);
+  box-sizing: border-box;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.vip-service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
+}
+
+.vip-service-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.vip-service-card h3 {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Livestock Stats Grid */
+.livestock-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.stat-card {
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  transition: all var(--transition-normal);
+  border-radius: var(--radius-lg);
+  box-sizing: border-box;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
+}
+
+.stat-number {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(45, 122, 78, 0.3);
+}
+
+.stat-icon {
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  font-weight: 500;
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Farm Tours */
+.farm-tours-content {
+  padding: 2.5rem;
+  margin-top: 2rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.farm-tours-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.farm-tour-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 1.2rem;
+  color: var(--text-light);
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-normal);
+}
+
+.farm-tour-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(10px);
+}
+
+.tour-icon {
+  font-size: 2rem;
+  font-weight: bold;
+  min-width: 50px;
+  text-align: center;
+}
+
+/* Event Stats Grid */
+.event-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.event-stat-card {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: all var(--transition-normal);
+  border-radius: var(--radius-lg);
+  box-sizing: border-box;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.event-stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
+}
+
+.event-stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(45, 122, 78, 0.3);
+}
+
+.event-stat-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.event-stat-label {
+  font-size: 1rem;
+  color: var(--text-light);
+  font-weight: 500;
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Access Section */
+.access-content {
+  padding: 2.5rem;
+  margin-top: 2rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.access-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.access-item {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.access-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.access-item h3 {
+  font-size: 1.3rem;
+  color: var(--text-light);
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.access-item p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .why-visit-title {
+    font-size: 2rem;
+  }
+
+  .why-visit-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .vip-services-grid,
+  .livestock-stats-grid,
+  .event-stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .stat-number,
+  .event-stat-number {
+    font-size: 2rem;
+  }
+
+  .access-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .why-visit-hero-content {
+    padding: 2rem 1rem;
+  }
+
+  .vip-services-grid,
+  .livestock-stats-grid,
+  .event-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .farm-tour-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+}
+

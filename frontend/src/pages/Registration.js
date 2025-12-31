@@ -244,48 +244,77 @@ const Registration = () => {
     <div className="registration-page">
       <div className="container">
         <div className="registration-header glass-card">
-          <div className="flag-emoji">🇵🇰</div>
-          <h1>{t('registration.title')}</h1>
-          <h2>{t('registration.subtitle')}</h2>
-          <p className="subtitle">{t('registration.description')}</p>
+          <div className="header-row header-row-1">
+            <div className="flag-emoji">🇵🇰</div>
+            <h1>{t('registration.title')}</h1>
+          </div>
+          <div className="header-row header-row-2">
+            <h2>{t('registration.subtitle')}</h2>
+          </div>
+          <div className="header-row header-row-3">
+            <p className="subtitle">{t('registration.description')}</p>
+          </div>
         </div>
 
         <div className="registration-content">
           <div className="registration-info">
             <div className="info-section glass-card">
-              <h3>{t('registration.contactInfo')}</h3>
-              <div className="info-item">
-                <span className="info-icon">📍</span>
-                <div>
-                  <strong>{t('registration.officeLocation')}</strong>
-                  <p>Pakistan</p>
+              <h3 className="info-section-title">{t('registration.contactInfo')}</h3>
+              <div className="info-items-grid">
+                <div className="info-item-card">
+                  <div className="info-icon-wrapper">
+                    <span className="info-icon">📍</span>
+                  </div>
+                  <div className="info-content-wrapper">
+                    <strong>{t('registration.officeLocation')}</strong>
+                    <p>Pakistan</p>
+                  </div>
                 </div>
-              </div>
-              <div className="info-item">
-                <span className="info-icon">✉️</span>
-                <div>
-                  <strong>{t('registration.email')}</strong>
-                  <p>info@agentofdocumentation.pk</p>
+                <div className="info-item-card">
+                  <div className="info-icon-wrapper">
+                    <span className="info-icon">✉️</span>
+                  </div>
+                  <div className="info-content-wrapper">
+                    <strong>{t('registration.email')}</strong>
+                    <p>info@sommet-elevage.pk</p>
+                  </div>
                 </div>
-              </div>
-              <div className="info-item">
-                <span className="info-icon">📞</span>
-                <div>
-                  <strong>{t('registration.phone')}</strong>
-                  <p>+92 XXX XXXXXXX</p>
+                <div className="info-item-card">
+                  <div className="info-icon-wrapper">
+                    <span className="info-icon">📞</span>
+                  </div>
+                  <div className="info-content-wrapper">
+                    <strong>{t('registration.phone')}</strong>
+                    <p>+92 XXX XXXXXXX</p>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div className="info-section glass-card">
-              <h3>{t('registration.whyRegister')}</h3>
-              <ul>
-                <li>✓ {t('registration.benefit1')}</li>
-                <li>✓ {t('registration.benefit2')}</li>
-                <li>✓ {t('registration.benefit3')}</li>
-                <li>✓ {t('registration.benefit4')}</li>
-                <li>✓ {t('registration.benefit5')}</li>
-              </ul>
+              <h3 className="info-section-title">{t('registration.whyRegister')}</h3>
+              <div className="benefits-list">
+                <div className="benefit-item">
+                  <span className="benefit-check">✓</span>
+                  <span>{t('registration.benefit1')}</span>
+                </div>
+                <div className="benefit-item">
+                  <span className="benefit-check">✓</span>
+                  <span>{t('registration.benefit2')}</span>
+                </div>
+                <div className="benefit-item">
+                  <span className="benefit-check">✓</span>
+                  <span>{t('registration.benefit3')}</span>
+                </div>
+                <div className="benefit-item">
+                  <span className="benefit-check">✓</span>
+                  <span>{t('registration.benefit4')}</span>
+                </div>
+                <div className="benefit-item">
+                  <span className="benefit-check">✓</span>
+                  <span>{t('registration.benefit5')}</span>
+                </div>
+              </div>
             </div>
           </div>
 

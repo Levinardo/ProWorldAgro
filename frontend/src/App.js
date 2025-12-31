@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import './App.css';
 import Home from './pages/Home';
@@ -10,8 +10,24 @@ import Registration from './pages/Registration';
 import Blogs from './pages/Blogs';
 import UpcomingEvents from './pages/UpcomingEvents';
 import Admin from './pages/Admin';
+import OfficialPartner from './pages/OfficialPartner';
+import WhyVisit from './pages/WhyVisit';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+
+// Layout component that conditionally renders Navbar and Footer
+const Layout = ({ children }) => {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
+  return (
+    <>
+      {!isAdminRoute && <Navbar />}
+      {children}
+      {!isAdminRoute && <Footer />}
+    </>
+  );
+};
 
 function App() {
   const { i18n } = useTranslation();
@@ -26,17 +42,19 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/agent-of-documentation" element={<AgentOfDocumentation />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/upcoming-events" element={<UpcomingEvents />} />
-          <Route path="/admin" element={<Admin />} />
-        </Routes>
-        <Footer />
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/official-partner" element={<OfficialPartner />} />
+            <Route path="/why-visit" element={<WhyVisit />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/agent-of-documentation" element={<AgentOfDocumentation />} />
+            <Route path="/registration" element={<Registration />} />
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/upcoming-events" element={<UpcomingEvents />} />
+            <Route path="/admin" element={<Admin />} />
+          </Routes>
+        </Layout>
         <Toaster
           position="top-right"
           toastOptions={{
