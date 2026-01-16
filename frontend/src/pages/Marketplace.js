@@ -1,9 +1,7 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import './Marketplace.css';
 
 const Marketplace = () => {
-  const { t } = useTranslation();
 
   return (
     <div className="marketplace-page">

@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './OfficialPartner.css';
 import EventCarousel from '../components/EventCarousel';

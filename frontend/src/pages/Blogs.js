@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import './Blogs.css';
 
 const Blogs = () => {
@@ -96,7 +95,6 @@ const Blogs = () => {
     }
   ];
 
-  const { t } = useTranslation();
 
   return (
     <div className="blogs">

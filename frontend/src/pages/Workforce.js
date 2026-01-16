@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import { saveWorkerRegistration } from '../services/firestore';
 import { testFirebaseConnection } from '../services/firebase';
 import './Workforce.css';
 
 const Workforce = () => {
-  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     workerType: '',
     firstName: '',

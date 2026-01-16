@@ -1,9 +1,7 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import './Services.css';
 
 const Services = () => {
-  const { t } = useTranslation();
 
   const services = [
     {
