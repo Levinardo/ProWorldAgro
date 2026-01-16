@@ -18,17 +18,35 @@
   --agri-brown: #8b6f47;
   --agri-earth: #a67c52;
   
+  /* Gold/Amber Accent Colors - Matching Image Reference */
+  --gold-primary: #d4af37;
+  --gold-light: #f4d03f;
+  --gold-dark: #b8941f;
+  --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+  --amber-accent: #ffc107;
+  --amber-light: #ffd54f;
+  --amber-dark: #ff8f00;
+  
   /* Day Theme Colors */
   --day-bg: linear-gradient(135deg, #2d7a4e 0%, #4a9d6a 100%);
   --day-text: #ffffff;
   --day-card-bg: rgba(255, 255, 255, 0.15);
-  --day-accent: #f4a261;
+  --day-accent: #d4af37;
   
   /* Module Theme Colors */
   --module-bg: linear-gradient(135deg, #2d7a4e 0%, #4a9d6a 100%);
   --module-text: #ffffff;
   --module-card-bg: rgba(255, 255, 255, 0.15);
   --module-accent: #4a9d6a;
+  
+  /* Button Colors - Green Primary, Gold Secondary */
+  --btn-primary-bg: #2d7a4e;
+  --btn-primary-hover: #1f5a3a;
+  --btn-primary-text: #ffffff;
+  --btn-gold-bg: #d4af37;
+  --btn-gold-hover: #b8941f;
+  --btn-gold-text: #ffffff;
+  --btn-gold-gradient: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
   
   /* Neutral Colors */
   --text-primary: #2c3e50;
@@ -121,17 +139,17 @@
   background: var(--module-card-bg);
 }
 
-/* Modern Button Styles - Matching Sommet de l'Élevage */
+/* Modern Button Styles - Matching Image Reference (Green Primary) */
 .btn-modern {
-  background: rgba(55, 58, 54, 1);
-  color: var(--text-light);
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
   border: none;
   padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: var(--radius-md);
   font-weight: 600;
   cursor: pointer;
   transition: all var(--transition-normal);
-  box-shadow: 0px 2px 10px 0 rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 2px 10px 0 rgba(45, 122, 78, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -152,34 +170,92 @@
 }
 
 .btn-modern:hover {
-  background: rgba(45, 48, 44, 1);
+  background: var(--btn-primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0px 4px 12px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 4px 12px 0 rgba(45, 122, 78, 0.4);
 }
 
 .btn-modern:active {
-  background: rgba(40, 43, 39, 1);
+  background: var(--primary-dark);
   transform: translateY(0);
 }
 
-.btn-glass {
-  background: rgba(55, 58, 54, 0.8);
-  backdrop-filter: var(--glass-backdrop);
-  -webkit-backdrop-filter: var(--glass-backdrop);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: var(--text-light);
+/* Gold Button Style - Matching Image Reference */
+.btn-gold {
+  background: var(--btn-gold-gradient);
+  color: var(--btn-gold-text);
+  border: none;
   padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: var(--radius-md);
   font-weight: 600;
   cursor: pointer;
   transition: all var(--transition-normal);
-  box-shadow: 0px 2px 10px 0 rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 2px 10px 0 rgba(212, 175, 55, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left var(--transition-slow);
+}
+
+.btn-gold:hover::before {
+  left: 100%;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 12px 0 rgba(212, 175, 55, 0.5);
+}
+
+.btn-gold:active {
+  background: var(--gold-dark);
+  transform: translateY(0);
+}
+
+.btn-glass {
+  background: var(--btn-gold-gradient);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--btn-gold-text);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  box-shadow: 0px 2px 10px 0 rgba(212, 175, 55, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left var(--transition-slow);
+}
+
+.btn-glass:hover::before {
+  left: 100%;
 }
 
 .btn-glass:hover {
-  background: rgba(55, 58, 54, 0.95);
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 100%);
   transform: translateY(-2px);
-  box-shadow: 0px 4px 12px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 4px 12px 0 rgba(212, 175, 55, 0.5);
 }
 
 /* Text Styles */

@@ -15,8 +15,11 @@ const Navbar = () => {
     <nav className="navbar glass-strong">
       <div className="navbar-content">
         <Link to="/" className="navbar-brand">
-          <span className="brand-icon">🌾</span>
-          <span className="brand-text">Livestock Professionals</span>
+          <img src="/logo/logo.png" alt="Livestock Professionals Logo" className="brand-icon" />
+          <div className="brand-text-container">
+            <span className="brand-text">LIVESTOCK <span className="brand-text-brown">Professionals</span></span>
+            <span className="brand-tagline">Pakistan's Gateway to Global Livestock & Agriculture</span>
+          </div>
         </Link>
         
         <button 
@@ -37,52 +40,7 @@ const Navbar = () => {
                 className={isActive('/') ? 'active' : ''}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {t('nav.home')}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/agent-of-documentation" 
-                className={isActive('/agent-of-documentation') ? 'active' : ''}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t('nav.agentOfDocumentation')}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/registration" 
-                className={isActive('/registration') ? 'active' : ''}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t('nav.registration')}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/blogs" 
-                className={isActive('/blogs') ? 'active' : ''}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t('nav.blogs')}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/upcoming-events" 
-                className={isActive('/upcoming-events') ? 'active' : ''}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t('nav.upcomingEvents')}
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/why-visit" 
-                className={isActive('/why-visit') ? 'active' : ''}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {t('nav.whyVisit')}
+                Home
               </Link>
             </li>
             <li>
@@ -91,7 +49,52 @@ const Navbar = () => {
                 className={isActive('/about') ? 'active' : ''}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {t('nav.about')}
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/services" 
+                className={isActive('/services') ? 'active' : ''}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Services
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/marketplace" 
+                className={isActive('/marketplace') ? 'active' : ''}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Marketplace
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/workforce" 
+                className={isActive('/workforce') ? 'active' : ''}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Workforce
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/upcoming-events" 
+                className={isActive('/upcoming-events') ? 'active' : ''}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Training Hub
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/contact" 
+                className={isActive('/contact') ? 'active' : ''}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Contact
               </Link>
             </li>
           </ul>

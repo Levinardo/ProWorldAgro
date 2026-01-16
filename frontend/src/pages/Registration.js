@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import toast from 'react-hot-toast';
 import { saveRegistration } from '../services/firestore';
-import { testFirebaseConnection } from '../services/firebase';
 import './Registration.css';
 
 const Registration = () => {
@@ -24,17 +22,8 @@ const Registration = () => {
 
   const [additionalParticipants, setAdditionalParticipants] = useState([]);
   const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [firebaseConnected, setFirebaseConnected] = useState(null);
-
-  // Test Firebase connection on component mount
-  useEffect(() => {
-    const checkFirebaseConnection = async () => {
-      const isConnected = await testFirebaseConnection();
-      setFirebaseConnected(isConnected);
-    };
-    checkFirebaseConnection();
-  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -150,14 +139,8 @@ const Registration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
     if (validate()) {
-      // Check Firebase connection before submitting
-      if (firebaseConnected === false) {
-        setErrors({ submit: 'Database connection failed. Please check your Firebase configuration.' });
-        return;
-      }
-
       setIsSubmitting(true);
       
       try {
@@ -170,59 +153,33 @@ const Registration = () => {
         const result = await saveRegistration(submissionData);
         
         if (result.success) {
-          // Show success toast notification
-          toast.success(t('registration.successMessage') || 'Registration submitted successfully!', {
-            duration: 5000,
-            style: {
-              background: 'rgba(76, 175, 80, 0.95)',
-              backdropFilter: 'blur(10px)',
-              color: '#fff',
-              borderRadius: '8px',
-              border: '1px solid rgba(76, 175, 80, 0.3)',
-            },
-          });
+          setSubmitted(true);
 
-          // Reset form immediately
-          setFormData({
-            realLegalStatus: '',
-            name: '',
-            surname: '',
-            phone: '',
-            email: '',
-            institutionName: '',
-            requestType: '',
-            eventDate: '',
-            services: [],
-            message: '',
-            consentCommercial: false,
-            consentPrivacy: false
-          });
-          setAdditionalParticipants([]);
+          // Reset form after 5 seconds
+          setTimeout(() => {
+            setSubmitted(false);
+            setFormData({
+              realLegalStatus: '',
+              name: '',
+              surname: '',
+              phone: '',
+              email: '',
+              institutionName: '',
+              requestType: '',
+              eventDate: '',
+              services: [],
+              message: '',
+              consentCommercial: false,
+              consentPrivacy: false
+            });
+            setAdditionalParticipants([]);
+          }, 5000);
         } else {
-          // Show error toast notification
-          toast.error(result.error || 'Failed to submit registration. Please try again.', {
-            duration: 5000,
-            style: {
-              background: 'rgba(244, 67, 54, 0.95)',
-              backdropFilter: 'blur(10px)',
-              color: '#fff',
-              borderRadius: '8px',
-              border: '1px solid rgba(244, 67, 54, 0.3)',
-            },
-          });
+          setErrors({ submit: result.error || 'Failed to submit registration. Please try again.' });
         }
       } catch (error) {
         console.error('Error submitting form:', error);
-        toast.error('An error occurred. Please try again later.', {
-          duration: 5000,
-          style: {
-            background: 'rgba(244, 67, 54, 0.95)',
-            backdropFilter: 'blur(10px)',
-            color: '#fff',
-            borderRadius: '8px',
-            border: '1px solid rgba(244, 67, 54, 0.3)',
-          },
-        });
+        setErrors({ submit: 'An error occurred. Please try again later.' });
       } finally {
         setIsSubmitting(false);
       }
@@ -244,97 +201,60 @@ const Registration = () => {
     <div className="registration-page">
       <div className="container">
         <div className="registration-header glass-card">
-          <div className="header-row header-row-1">
-            <div className="flag-emoji">🇵🇰</div>
-            <h1>{t('registration.title')}</h1>
-          </div>
-          <div className="header-row header-row-2">
-            <h2>{t('registration.subtitle')}</h2>
-          </div>
-          <div className="header-row header-row-3">
-            <p className="subtitle">{t('registration.description')}</p>
-          </div>
+          <div className="flag-emoji">🇵🇰</div>
+          <h1>{t('registration.title')}</h1>
+          <h2>{t('registration.subtitle')}</h2>
+          <p className="subtitle">{t('registration.description')}</p>
         </div>
+
+        {submitted && (
+          <div className="success-message glass-card">
+            <h3>{t('registration.successTitle')}</h3>
+            <p>{t('registration.successMessage')}</p>
+          </div>
+        )}
 
         <div className="registration-content">
           <div className="registration-info">
             <div className="info-section glass-card">
-              <h3 className="info-section-title">{t('registration.contactInfo')}</h3>
-              <div className="info-items-grid">
-                <div className="info-item-card">
-                  <div className="info-icon-wrapper">
-                    <span className="info-icon">📍</span>
-                  </div>
-                  <div className="info-content-wrapper">
-                    <strong>{t('registration.officeLocation')}</strong>
-                    <p>Pakistan</p>
-                  </div>
+              <h3>{t('registration.contactInfo')}</h3>
+              <div className="info-item">
+                <span className="info-icon">📍</span>
+                <div>
+                  <strong>{t('registration.officeLocation')}</strong>
+                  <p>Pakistan</p>
                 </div>
-                <div className="info-item-card">
-                  <div className="info-icon-wrapper">
-                    <span className="info-icon">✉️</span>
-                  </div>
-                  <div className="info-content-wrapper">
-                    <strong>{t('registration.email')}</strong>
-                    <p>info@sommet-elevage.pk</p>
-                  </div>
+              </div>
+              <div className="info-item">
+                <span className="info-icon">✉️</span>
+                <div>
+                  <strong>{t('registration.email')}</strong>
+                  <p>info@agentofdocumentation.pk</p>
                 </div>
-                <div className="info-item-card">
-                  <div className="info-icon-wrapper">
-                    <span className="info-icon">📞</span>
-                  </div>
-                  <div className="info-content-wrapper">
-                    <strong>{t('registration.phone')}</strong>
-                    <p>+92 XXX XXXXXXX</p>
-                  </div>
+              </div>
+              <div className="info-item">
+                <span className="info-icon">📞</span>
+                <div>
+                  <strong>{t('registration.phone')}</strong>
+                  <p>+92 XXX XXXXXXX</p>
                 </div>
               </div>
             </div>
 
             <div className="info-section glass-card">
-              <h3 className="info-section-title">{t('registration.whyRegister')}</h3>
-              <div className="benefits-list">
-                <div className="benefit-item">
-                  <span className="benefit-check">✓</span>
-                  <span>{t('registration.benefit1')}</span>
-                </div>
-                <div className="benefit-item">
-                  <span className="benefit-check">✓</span>
-                  <span>{t('registration.benefit2')}</span>
-                </div>
-                <div className="benefit-item">
-                  <span className="benefit-check">✓</span>
-                  <span>{t('registration.benefit3')}</span>
-                </div>
-                <div className="benefit-item">
-                  <span className="benefit-check">✓</span>
-                  <span>{t('registration.benefit4')}</span>
-                </div>
-                <div className="benefit-item">
-                  <span className="benefit-check">✓</span>
-                  <span>{t('registration.benefit5')}</span>
-                </div>
-              </div>
+              <h3>{t('registration.whyRegister')}</h3>
+              <ul>
+                <li>✓ {t('registration.benefit1')}</li>
+                <li>✓ {t('registration.benefit2')}</li>
+                <li>✓ {t('registration.benefit3')}</li>
+                <li>✓ {t('registration.benefit4')}</li>
+                <li>✓ {t('registration.benefit5')}</li>
+              </ul>
             </div>
           </div>
 
           <div className="registration-form-container glass-card">
             <h2 className="form-title">{t('registration.formTitle')}</h2>
-
-            {/* Firebase Connection Status */}
-            {firebaseConnected !== null && (
-              <div className={`connection-status ${firebaseConnected ? 'connected' : 'disconnected'}`}>
-                <span className="status-icon">
-                  {firebaseConnected ? '🟢' : '🔴'}
-                </span>
-                <span className="status-text">
-                  {firebaseConnected
-                    ? 'Database Connected'
-                    : 'Database Connection Failed - Environment variables may not be configured in Vercel'
-                  }
-                </span>
-              </div>
-            )}
             
             <form onSubmit={handleSubmit} className="registration-form">
               <div className="form-row">
@@ -634,6 +554,12 @@ const Registration = () => {
                   <span className="error-message">{errors.consentPrivacy}</span>
                 )}
               </div>
+
+              {errors.submit && (
+                <div className="form-group full-width">
+                  <span className="error-message">{errors.submit}</span>
+                </div>
+              )}
 
               <button 
                 type="submit" 

@@ -9,6 +9,12 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
+        <div className="footer-brand">
+          <Link to="/" className="footer-logo-link">
+            <img src="/logo/logo.png" alt="Livestock Professionals Logo" className="footer-logo" />
+            <span className="footer-brand-text">Livestock Professionals</span>
+          </Link>
+        </div>
         <div className="footer-content">
           {/* Quick Menu Column */}
           <div className="footer-column">

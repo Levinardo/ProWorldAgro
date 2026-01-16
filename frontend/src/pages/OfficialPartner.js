@@ -75,108 +75,91 @@ const OfficialPartner = () => {
   
   return (
     <div className="official-partner-page">
-      <section className="op-hero">
-        <div className="op-hero-overlay" />
-        <div className="op-hero-inner">
-          <div className="op-badge">OFFICIAL PARTNER</div>
-          <h1 className="op-title">Pakistan × Sommet de l’Élevage</h1>
-          <p className="op-subtitle">
-            Pakistan is the official partner with Sommet de l’Élevage — building stronger international
-            connections in sustainable livestock and agriculture.
-          </p>
-          <div className="op-actions">
-            <Link to="/registration" className="btn-modern">
-              Registration
-            </Link>
-            <a href="#op-details" className="btn-glass">
-              Learn more
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="op-details container" id="op-details">
-        <div className="op-panels">
-          <div className="op-panel glass-card">
-            <div className="op-panel-head">
-              <div className="op-icon" aria-hidden="true">
-                🇵🇰
-              </div>
-              <div>
-                <h2 className="op-panel-title">Pakistan</h2>
-                <p className="op-panel-kicker">Official Partner</p>
-              </div>
-            </div>
-            <p className="op-panel-text">
+      <section className="mission-vision-section container" id="op-details">
+        <div className="mission-vision-grid">
+          <div className="mission-vision-item">
+            <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🇵🇰</div>
+            <h2 className="mission-vision-heading">Pakistan</h2>
+            <p className="mission-vision-text" style={{ marginBottom: '1.5rem' }}>
               A strong and fast-growing livestock and agricultural market — ready for global partnerships,
               innovation, and international collaboration.
             </p>
-            <ul className="op-list">
-              <li>Trade & investment opportunities</li>
-              <li>Livestock, dairy, beef, sheep & poultry focus</li>
-              <li>Networking with international exhibitors</li>
+            <ul style={{ listStyle: 'none', padding: 0, textAlign: 'left', maxWidth: '400px', margin: '0 auto' }}>
+              <li style={{ marginBottom: '0.5rem', color: '#7f8c8d' }}>✓ Trade & investment opportunities</li>
+              <li style={{ marginBottom: '0.5rem', color: '#7f8c8d' }}>✓ Livestock, dairy, beef, sheep & poultry focus</li>
+              <li style={{ marginBottom: '0.5rem', color: '#7f8c8d' }}>✓ Networking with international exhibitors</li>
             </ul>
           </div>
 
-          <div className="op-panel glass-card">
-            <div className="op-panel-head">
-              <div className="op-icon" aria-hidden="true">
-                🐄
-              </div>
-              <div>
-                <h2 className="op-panel-title">Sommet de l’Élevage</h2>
-                <p className="op-panel-kicker">World-class livestock show</p>
-              </div>
-            </div>
-            <p className="op-panel-text">
+          <div className="mission-vision-item">
+            <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🐄</div>
+            <h2 className="mission-vision-heading">Sommet de l'Élevage</h2>
+            <p className="mission-vision-text" style={{ marginBottom: '1.5rem' }}>
               A global platform for sustainable livestock, genetics, equipment, and agricultural innovation —
               connecting professionals from around the world.
             </p>
-            <ul className="op-list">
-              <li>Exhibitors, conferences & innovation</li>
-              <li>Business meetings & guided tours</li>
-              <li>Professional networking ecosystem</li>
+            <ul style={{ listStyle: 'none', padding: 0, textAlign: 'left', maxWidth: '400px', margin: '0 auto' }}>
+              <li style={{ marginBottom: '0.5rem', color: '#7f8c8d' }}>✓ Exhibitors, conferences & innovation</li>
+              <li style={{ marginBottom: '0.5rem', color: '#7f8c8d' }}>✓ Business meetings & guided tours</li>
+              <li style={{ marginBottom: '0.5rem', color: '#7f8c8d' }}>✓ Professional networking ecosystem</li>
             </ul>
           </div>
         </div>
 
-        <div className="op-showcase glass-card">
-          <div className="op-showcase-grid">
-            <div className="op-showcase-item">
-              <div className="op-showcase-label">Partnership</div>
-              <div className="op-showcase-value">Pakistan × France</div>
-            </div>
-            <div className="op-showcase-item">
-              <div className="op-showcase-label">Focus</div>
-              <div className="op-showcase-value">Sustainable livestock & agriculture</div>
-            </div>
-            <div className="op-showcase-item">
-              <div className="op-showcase-label">Goal</div>
-              <div className="op-showcase-value">Connect investors, exhibitors & professionals</div>
+        <section className="key-services-section">
+          <div className="container">
+            <div className="services-grid">
+              <div className="service-icon-card">
+                <div className="service-icon">🤝</div>
+                <h3 className="service-icon-title">Partnership</h3>
+                <p className="service-icon-description">Pakistan × France</p>
+              </div>
+              <div className="service-icon-card">
+                <div className="service-icon">🌾</div>
+                <h3 className="service-icon-title">Focus</h3>
+                <p className="service-icon-description">Sustainable livestock & agriculture</p>
+              </div>
+              <div className="service-icon-card">
+                <div className="service-icon">🎯</div>
+                <h3 className="service-icon-title">Goal</h3>
+                <p className="service-icon-description">Connect investors, exhibitors & professionals</p>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div className="op-role-panel glass-card">
-          <div className="op-role-panel-head">
-            <div className="op-icon" aria-hidden="true">
-              🎨
+        <section className="marketplace-section">
+          <div className="container">
+            <h2 className="marketplace-title">{t('officialPartner.roleTitle')}</h2>
+            <div className="marketplace-separator"></div>
+            <div className="marketplace-subtitle-wrapper">
+              <p className="marketplace-subtitle">{t('officialPartner.roleKicker')}</p>
             </div>
-            <div>
-              <h2 className="op-panel-title">{t('officialPartner.roleTitle')}</h2>
-              <p className="op-panel-kicker">{t('officialPartner.roleKicker')}</p>
+            <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+              <p style={{ fontSize: '1.2rem', color: '#7f8c8d', marginBottom: '2rem', lineHeight: '1.6' }}>
+                {t('officialPartner.roleDescription')}
+              </p>
+              <div className="services-grid">
+                <div className="service-icon-card">
+                  <div className="service-icon">✓</div>
+                  <h3 className="service-icon-title">{t('officialPartner.roleService1')}</h3>
+                </div>
+                <div className="service-icon-card">
+                  <div className="service-icon">✓</div>
+                  <h3 className="service-icon-title">{t('officialPartner.roleService2')}</h3>
+                </div>
+                <div className="service-icon-card">
+                  <div className="service-icon">✓</div>
+                  <h3 className="service-icon-title">{t('officialPartner.roleService3')}</h3>
+                </div>
+                <div className="service-icon-card">
+                  <div className="service-icon">✓</div>
+                  <h3 className="service-icon-title">{t('officialPartner.roleService4')}</h3>
+                </div>
+              </div>
             </div>
           </div>
-          <p className="op-panel-text">
-            {t('officialPartner.roleDescription')}
-          </p>
-          <ul className="op-list">
-            <li>{t('officialPartner.roleService1')}</li>
-            <li>{t('officialPartner.roleService2')}</li>
-            <li>{t('officialPartner.roleService3')}</li>
-            <li>{t('officialPartner.roleService4')}</li>
-          </ul>
-        </div>
+        </section>
       </section>
 
       {/* Slideshow Section */}

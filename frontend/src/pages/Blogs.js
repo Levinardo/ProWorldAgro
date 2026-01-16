@@ -101,31 +101,48 @@ const Blogs = () => {
   return (
     <div className="blogs">
       <div className="container">
-        <div className="blogs-header glass-card">
-          <div className="blogs-header-row blogs-header-row-1">
-            <h1>Agricultural News & Insights</h1>
+        <section className="marketplace-section">
+          <div className="marketplace-cards" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))' }}>
+            {blogs.map(blog => (
+              <article key={blog.id} className="marketplace-card">
+                <div className="marketplace-card-image" style={{ height: '200px', background: '#f0f0f0' }}>
+                  <div style={{ 
+                    width: '100%', 
+                    height: '100%', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    fontSize: '3rem'
+                  }}>
+                    {blog.category === 'Sustainability' ? '🌱' : 
+                     blog.category === 'Organic Farming' ? '🌾' :
+                     blog.category === 'Livestock' ? '🐄' :
+                     blog.category === 'Climate' ? '🌍' :
+                     blog.category === 'Technology' ? '💻' :
+                     blog.category === 'Farming Techniques' ? '🚜' :
+                     blog.category === 'Pest Management' ? '🐛' :
+                     blog.category === 'Business' ? '💼' : '📰'}
+                  </div>
+                  <div className="marketplace-card-overlay">
+                    <h3 className="marketplace-card-title">{blog.category}</h3>
+                  </div>
+                </div>
+                <div style={{ padding: '1.5rem' }}>
+                  <h2 style={{ fontSize: '1.5rem', color: '#1f5a3a', marginBottom: '1rem', fontWeight: 700 }}>{blog.title}</h2>
+                  <p style={{ color: '#7f8c8d', lineHeight: '1.6', marginBottom: '1rem', fontSize: '0.95rem' }}>{blog.excerpt}</p>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', fontSize: '0.85rem', color: '#7f8c8d' }}>
+                    <span>By {blog.author}</span>
+                    <span>{blog.readTime}</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: '0.85rem', color: '#7f8c8d' }}>{blog.date}</span>
+                    <button className="btn-gold" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>Read More</button>
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
-          <div className="blogs-header-row blogs-header-row-2">
-            <p>Stay updated with the latest trends, tips, and innovations in agriculture</p>
-          </div>
-        </div>
-        <div className="blogs-grid">
-          {blogs.map(blog => (
-            <article key={blog.id} className="blog-card glass-card">
-              <div className="blog-card-header">
-                <span className="blog-category">{blog.category}</span>
-                <span className="blog-read-time">{blog.readTime}</span>
-              </div>
-              <h2 className="blog-title">{blog.title}</h2>
-              <p className="blog-excerpt">{blog.excerpt}</p>
-              <div className="blog-meta">
-                <span className="blog-author">By {blog.author}</span>
-                <span className="blog-date">{blog.date}</span>
-              </div>
-              <button className="blog-read-more">Read More</button>
-            </article>
-          ))}
-        </div>
+        </section>
       </div>
     </div>
   );

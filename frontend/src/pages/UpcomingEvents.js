@@ -20,72 +20,120 @@ const UpcomingEvents = () => {
     }
   ];
 
+  // Training programs data
+  const trainingPrograms = [
+    {
+      title: "Online Workshops",
+      items: [
+        "Modern farming techniques",
+        "Livestock management best practices",
+        "Sustainable agriculture methods",
+        "Digital farming tools"
+      ]
+    },
+    {
+      title: "International Speaker Sessions",
+      items: [
+        "Expert insights from global leaders",
+        "Industry best practices",
+        "Case studies and success stories",
+        "Q&A sessions with professionals"
+      ]
+    },
+    {
+      title: "Professional Development",
+      items: [
+        "Skill certification programs",
+        "Career advancement workshops",
+        "Networking opportunities",
+        "Mentorship programs"
+      ]
+    },
+    {
+      title: "Climate-Smart Agriculture",
+      items: [
+        "Adaptation strategies",
+        "Resource management",
+        "Environmental sustainability",
+        "Climate-resilient practices"
+      ]
+    }
+  ];
+
   return (
     <div className="upcoming-events">
       <div className="container">
-        <div className="events-header glass-card">
-          <h1 className="events-title">
-            <span className="text-gradient">{t('events.title')}</span>
-          </h1>
-          <p className="events-subtitle">{t('events.subtitle')}</p>
-        </div>
+        {/* Training Programs Section */}
+        <section className="key-services-section">
+          <div className="container">
+            <h2 className="marketplace-title" style={{ marginBottom: '3rem' }}>Training Programs</h2>
+            <div className="services-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))' }}>
+              {trainingPrograms.map((program, index) => (
+                <div key={index} className="service-icon-card">
+                  <div className="service-icon">{['💻', '🌍', '📚', '🌱'][index] || '📋'}</div>
+                  <h3 className="service-icon-title">{program.title}</h3>
+                  <ul className="service-items" style={{ marginTop: '1rem', textAlign: 'left', fontSize: '0.9rem', color: '#7f8c8d' }}>
+                    {program.items.map((item, itemIndex) => (
+                      <li key={itemIndex} style={{ marginBottom: '0.5rem' }}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-        <div className="events-grid">
-          {upcomingEvents.map(event => (
-            <div key={event.id} className="event-card glass-card">
-              <div className="event-image-container">
-                <img 
-                  src={event.image} 
-                  alt={event.title}
-                  className="event-image"
-                />
-                <div className="event-category-badge">{event.category}</div>
-              </div>
-              
-              <div className="event-content">
-                <h2 className="event-title">{event.title}</h2>
-                <p className="event-description">{event.description}</p>
-                
-                <div className="event-details">
-                  <div className="event-detail-item">
-                    <span className="event-icon">📅</span>
-                    <span className="event-detail-text">
-                      {event.date}
-                    </span>
-                  </div>
-                  <div className="event-detail-item">
-                    <span className="event-icon">🕐</span>
-                    <span className="event-detail-text">{event.time}</span>
-                  </div>
-                  <div className="event-detail-item">
-                    <span className="event-icon">📍</span>
-                    <span className="event-detail-text">{event.location}</span>
+        {/* Upcoming Events Section */}
+        <section className="marketplace-section">
+          <h2 className="marketplace-title">Upcoming Events</h2>
+          <p className="marketplace-subtitle">Join us for these exciting opportunities</p>
+          <div className="marketplace-cards">
+            {upcomingEvents.map(event => (
+              <div key={event.id} className="marketplace-card">
+                <div className="marketplace-card-image">
+                  <img src={event.image} alt={event.title} />
+                  <div className="marketplace-card-overlay">
+                    <h3 className="marketplace-card-title">{event.category}</h3>
                   </div>
                 </div>
-
-                <div className="event-footer">
+                <div style={{ padding: '1.5rem' }}>
+                  <h2 style={{ fontSize: '1.5rem', color: '#1f5a3a', marginBottom: '1rem', fontWeight: 700 }}>{event.title}</h2>
+                  <p style={{ color: '#7f8c8d', lineHeight: '1.6', marginBottom: '1.5rem', fontSize: '0.95rem' }}>{event.description}</p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem', paddingTop: '1rem', borderTop: '1px solid #e0e0e0' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#7f8c8d', fontSize: '0.95rem' }}>
+                      <span>📅</span>
+                      <span>{event.date}</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#7f8c8d', fontSize: '0.95rem' }}>
+                      <span>🕐</span>
+                      <span>{event.time}</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: '#7f8c8d', fontSize: '0.95rem' }}>
+                      <span>📍</span>
+                      <span>{event.location}</span>
+                    </div>
+                  </div>
                   {event.registrationRequired ? (
-                    <a 
-                      href="/registration" 
-                      className="btn-modern event-register-btn"
-                    >
-                      {t('events.register')}
+                    <a href="/registration" className="btn-gold marketplace-card-button">
+                      {t('events.register')} &gt;
                     </a>
                   ) : (
-                    <span className="event-open-badge">
+                    <div className="btn-gold marketplace-card-button" style={{ background: '#4caf50', cursor: 'default' }}>
                       {t('events.openToAll')}
-                    </span>
+                    </div>
                   )}
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </section>
 
         {upcomingEvents.length === 0 && (
-          <div className="events-empty glass-card">
-            <p>{t('events.noEvents')}</p>
-          </div>
+          <section className="marketplace-section">
+            <div style={{ textAlign: 'center', padding: '4rem 2rem', color: '#7f8c8d' }}>
+              <p style={{ fontSize: '1.2rem' }}>{t('events.noEvents')}</p>
+            </div>
+          </section>
         )}
       </div>
     </div>

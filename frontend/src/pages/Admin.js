@@ -5,6 +5,8 @@ import {
   authenticateAdmin,
   getFilteredRegistrations,
   updateRegistrationStatus,
+  getFilteredWorkers,
+  updateWorkerStatus,
   initializeAdmin
 } from '../services/firestore';
 import './Admin.css';
@@ -13,6 +15,7 @@ import './Admin.css';
 const NAV_ITEMS = [
   { id: 'dashboard', label: 'Dashboard', icon: '📊' },
   { id: 'registrations', label: 'Registrations', icon: '👥' },
+  { id: 'workers', label: 'Workers', icon: '👷' },
   { id: 'analytics', label: 'Analytics', icon: '📈' },
   { id: 'settings', label: 'Settings', icon: '⚙️' }
 ];
@@ -158,6 +161,8 @@ const Admin = () => {
         return <DashboardOverview onSectionChange={handleSectionChange} />;
       case 'registrations':
         return <RegistrationManagement />;
+      case 'workers':
+        return <WorkersManagement />;
       case 'analytics':
         return <AnalyticsView />;
       case 'settings':
@@ -648,6 +653,39 @@ const RegistrationDetailModal = ({ registration, onClose, onStatusUpdate, format
                   <span>{registration.institutionName}</span>
                 </div>
               )}
+              {registration.companyName && (
+                <div className="detail-item">
+                  <label>Company/Employer Name</label>
+                  <span>{registration.companyName}</span>
+                </div>
+              )}
+              <div className="detail-item">
+                <label>Nationality</label>
+                <span>{registration.nationality || 'N/A'}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Passport Information */}
+          <div className="detail-section">
+            <h3>🛂 Passport Information</h3>
+            <div className="detail-grid">
+              <div className="detail-item">
+                <label>Passport Number</label>
+                <span>{registration.passportNumber || 'N/A'}</span>
+              </div>
+              <div className="detail-item">
+                <label>Passport Issue Date</label>
+                <span>{registration.passportIssueDate || 'N/A'}</span>
+              </div>
+              <div className="detail-item">
+                <label>Passport Expiry Date</label>
+                <span>{registration.passportExpiryDate || 'N/A'}</span>
+              </div>
+              <div className="detail-item">
+                <label>Purpose of Visit</label>
+                <span>{registration.purposeOfVisit || 'N/A'}</span>
+              </div>
             </div>
           </div>
 
@@ -736,6 +774,487 @@ const RegistrationDetailModal = ({ registration, onClose, onStatusUpdate, format
                 className="action-btn-modal reject"
               >
                 ❌ Reject Registration
+              </button>
+            )}
+            <button onClick={onClose} className="action-btn-modal close">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Workers Management Component
+const WorkersManagement = () => {
+  const [workers, setWorkers] = useState([]);
+  const [filteredWorkers, setFilteredWorkers] = useState([]);
+  const [activeTab, setActiveTab] = useState('all');
+  const [workerTypeFilter, setWorkerTypeFilter] = useState('all');
+  const [filters, setFilters] = useState({
+    startDate: '',
+    endDate: ''
+  });
+  const [isLoadingWorkers, setIsLoadingWorkers] = useState(false);
+  const [firebaseError, setFirebaseError] = useState(false);
+  const [selectedWorker, setSelectedWorker] = useState(null);
+
+  const workerTypes = [
+    { value: 'all', label: 'All Types' },
+    { value: 'farmer', label: 'Farmer' },
+    { value: 'vet', label: 'Veterinarian' },
+    { value: 'seeds', label: 'Seeds Specialist' },
+    { value: 'livestock', label: 'Livestock Manager' },
+    { value: 'agriculture', label: 'Agriculture Expert' },
+    { value: 'dairy', label: 'Dairy Specialist' },
+    { value: 'poultry', label: 'Poultry Expert' },
+    { value: 'other', label: 'Other' }
+  ];
+
+  const WORKER_STATUS_TABS = [
+    { key: 'all', label: 'All' },
+    { key: 'submitted', label: 'Submitted' },
+    { key: 'accepted', label: 'Accepted' },
+    { key: 'rejected', label: 'Rejected' }
+  ];
+
+  const applyFilters = useCallback((data, tab, typeFilter, currentFilters) => {
+    let filtered = data;
+
+    // Apply tab filter
+    if (tab !== 'all') {
+      filtered = filtered.filter(worker => worker.status === tab);
+    }
+
+    // Apply worker type filter
+    if (typeFilter !== 'all') {
+      filtered = filtered.filter(worker => worker.workerType === typeFilter);
+    }
+
+    // Apply date filters
+    if (currentFilters.startDate) {
+      const startDate = new Date(currentFilters.startDate);
+      startDate.setHours(0, 0, 0, 0);
+      filtered = filtered.filter(worker => {
+        const workerDate = worker.createdAt?.toDate ? worker.createdAt.toDate() : new Date(worker.createdAt);
+        return workerDate >= startDate;
+      });
+    }
+
+    if (currentFilters.endDate) {
+      const endDate = new Date(currentFilters.endDate);
+      endDate.setHours(23, 59, 59, 999);
+      filtered = filtered.filter(worker => {
+        const workerDate = worker.createdAt?.toDate ? worker.createdAt.toDate() : new Date(worker.createdAt);
+        return workerDate <= endDate;
+      });
+    }
+
+    setFilteredWorkers(filtered);
+  }, []);
+
+  const loadWorkers = useCallback(async () => {
+    setIsLoadingWorkers(true);
+    setFirebaseError(false);
+    try {
+      const result = await getFilteredWorkers();
+      if (result.success) {
+        setWorkers(result.data);
+        applyFilters(result.data, activeTab, workerTypeFilter, filters);
+      } else {
+        setFirebaseError(true);
+        toast.error(result.error || 'Failed to load workers');
+      }
+    } catch (error) {
+      setFirebaseError(true);
+      toast.error('Error loading workers');
+    } finally {
+      setIsLoadingWorkers(false);
+    }
+  }, [activeTab, workerTypeFilter, filters, applyFilters]);
+
+  const getWorkerCounts = () => {
+    const counts = {
+      all: workers.length,
+      submitted: workers.filter(w => w.status === 'submitted').length,
+      accepted: workers.filter(w => w.status === 'accepted').length,
+      rejected: workers.filter(w => w.status === 'rejected').length
+    };
+    return counts;
+  };
+
+  const handleTabChange = (tabKey) => {
+    setActiveTab(tabKey);
+    applyFilters(workers, tabKey, workerTypeFilter, filters);
+  };
+
+  const handleTypeFilterChange = (type) => {
+    setWorkerTypeFilter(type);
+    applyFilters(workers, activeTab, type, filters);
+  };
+
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
+    applyFilters(workers, activeTab, workerTypeFilter, newFilters);
+  };
+
+  const handleStatusUpdate = async (workerId, newStatus) => {
+    try {
+      const result = await updateWorkerStatus(workerId, newStatus);
+      if (result.success) {
+        toast.success(`Worker ${newStatus} successfully`);
+        loadWorkers();
+      } else {
+        toast.error('Failed to update status');
+      }
+    } catch (error) {
+      toast.error('Error updating status');
+    }
+  };
+
+  const formatDate = (timestamp) => {
+    if (!timestamp) return 'N/A';
+    const date = timestamp?.toDate ? timestamp.toDate() : new Date(timestamp);
+    return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+  };
+
+  const getWorkerTypeLabel = (type) => {
+    const workerType = workerTypes.find(t => t.value === type);
+    return workerType ? workerType.label : type;
+  };
+
+  // Load workers when component mounts
+  useEffect(() => {
+    loadWorkers();
+  }, [loadWorkers]);
+
+  if (firebaseError) {
+    return (
+      <div className="workers-management">
+        <div className="firebase-error-message glass-card">
+          <div className="error-content">
+            <h4>⚠️ Database Configuration Required</h4>
+            <p>Firebase is not properly configured. To enable full functionality:</p>
+            <ol>
+              <li>Go to your <a href="https://vercel.com/levinardos-projects/pro-world-agro/settings/environment-variables" target="_blank" rel="noopener noreferrer">Vercel Dashboard</a></li>
+              <li>Add the 7 Firebase environment variables listed in <code>VERCEL_ENV_SETUP.md</code></li>
+              <li>Redeploy the application</li>
+            </ol>
+            <p>In the meantime, you can still access the admin interface and explore the UI.</p>
+            <button onClick={loadWorkers} className="retry-btn">
+              🔄 Retry Loading
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="workers-management">
+      {/* Header with Refresh Button */}
+      <div className="registration-header glass-card">
+        <h3>👷 Workers Management</h3>
+        <button onClick={loadWorkers} className="refresh-btn" disabled={isLoadingWorkers}>
+          {isLoadingWorkers ? '🔄 Loading...' : '🔄 Refresh'}
+        </button>
+      </div>
+
+      {/* Worker Type Filter */}
+      <div className="registration-filters glass-card">
+        <h4>👤 Worker Type Filter</h4>
+        <div className="filter-row">
+          {workerTypes.map(type => (
+            <button
+              key={type.value}
+              className={`filter-btn ${workerTypeFilter === type.value ? 'active' : ''}`}
+              onClick={() => handleTypeFilterChange(type.value)}
+            >
+              {type.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Status Tabs */}
+      <div className="registration-tabs glass-card">
+        <div className="tabs">
+          {WORKER_STATUS_TABS.map(tab => {
+            const counts = getWorkerCounts();
+            return (
+              <button
+                key={tab.key}
+                className={`tab-btn ${activeTab === tab.key ? 'active' : ''}`}
+                onClick={() => handleTabChange(tab.key)}
+              >
+                {tab.label} ({counts[tab.key]})
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Date Filters */}
+      <div className="registration-filters glass-card">
+        <h4>📅 Date Filters</h4>
+        <div className="filter-row">
+          <div className="filter-group">
+            <label>Start Date:</label>
+            <input
+              type="date"
+              value={filters.startDate}
+              onChange={(e) => handleFilterChange({ ...filters, startDate: e.target.value })}
+            />
+          </div>
+          <div className="filter-group">
+            <label>End Date:</label>
+            <input
+              type="date"
+              value={filters.endDate}
+              onChange={(e) => handleFilterChange({ ...filters, endDate: e.target.value })}
+            />
+          </div>
+          <button
+            onClick={() => handleFilterChange({ startDate: '', endDate: '' })}
+            className="clear-filters-btn"
+          >
+            Clear Filters
+          </button>
+        </div>
+      </div>
+
+      {/* Workers List */}
+      <div className="registrations-list glass-card">
+        {isLoadingWorkers ? (
+          <div className="loading-state">
+            <p>🔄 Loading workers...</p>
+          </div>
+        ) : filteredWorkers.length === 0 ? (
+          <div className="empty-state">
+            <p>👷 No workers found</p>
+          </div>
+        ) : (
+          <div className="registrations-table-container">
+            <table className="registrations-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Type</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredWorkers.map(worker => (
+                  <tr 
+                    key={worker.id} 
+                    onClick={() => setSelectedWorker(worker)}
+                    className="clickable-row"
+                  >
+                    <td data-label="Name">{worker.firstName} {worker.lastName}</td>
+                    <td data-label="Type">{getWorkerTypeLabel(worker.workerType)}</td>
+                    <td data-label="Email">{worker.email || 'N/A'}</td>
+                    <td data-label="Phone">{worker.phone || 'N/A'}</td>
+                    <td data-label="Status">
+                      <span className={`status-badge status-${worker.status || 'submitted'}`}>
+                        {worker.status || 'submitted'}
+                      </span>
+                    </td>
+                    <td data-label="Date">{formatDate(worker.createdAt)}</td>
+                    <td data-label="Actions">
+                      <div className="table-actions">
+                        {worker.status !== 'accepted' && (
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleStatusUpdate(worker.id, 'accepted');
+                            }}
+                            className="action-btn-sm accept"
+                          >
+                            ✅ Accept
+                          </button>
+                        )}
+                        {worker.status !== 'rejected' && (
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleStatusUpdate(worker.id, 'rejected');
+                            }}
+                            className="action-btn-sm reject"
+                          >
+                            ❌ Reject
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
+      {/* Worker Detail Modal */}
+      {selectedWorker && (
+        <WorkerDetailModal
+          worker={selectedWorker}
+          onClose={() => setSelectedWorker(null)}
+          onStatusUpdate={handleStatusUpdate}
+          formatDate={formatDate}
+          getWorkerTypeLabel={getWorkerTypeLabel}
+        />
+      )}
+    </div>
+  );
+};
+
+// Worker Detail Modal Component
+const WorkerDetailModal = ({ worker, onClose, onStatusUpdate, formatDate, getWorkerTypeLabel }) => {
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  return (
+    <div className="modal-backdrop" onClick={handleBackdropClick}>
+      <div className="modal-content glass-card">
+        <div className="modal-header">
+          <h2>👷 Worker Details</h2>
+          <button className="modal-close" onClick={onClose}>✕</button>
+        </div>
+
+        <div className="modal-body">
+          {/* Status Badge */}
+          <div className="detail-section status-section">
+            <span className={`status-badge large status-${worker.status || 'submitted'}`}>
+              {worker.status || 'submitted'}
+            </span>
+            <span className="detail-date">Submitted: {formatDate(worker.createdAt)}</span>
+          </div>
+
+          {/* Personal Information */}
+          <div className="detail-section">
+            <h3>👤 Personal Information</h3>
+            <div className="detail-grid">
+              <div className="detail-item">
+                <label>Full Name</label>
+                <span>{worker.firstName} {worker.lastName}</span>
+              </div>
+              <div className="detail-item">
+                <label>Worker Type</label>
+                <span>{getWorkerTypeLabel(worker.workerType)}</span>
+              </div>
+              <div className="detail-item">
+                <label>Email</label>
+                <span>{worker.email || 'N/A'}</span>
+              </div>
+              <div className="detail-item">
+                <label>Phone</label>
+                <span>{worker.phone || 'N/A'}</span>
+              </div>
+              <div className="detail-item">
+                <label>Address</label>
+                <span>{worker.address || 'N/A'}</span>
+              </div>
+              <div className="detail-item">
+                <label>City</label>
+                <span>{worker.city || 'N/A'}</span>
+              </div>
+              {worker.province && (
+                <div className="detail-item">
+                  <label>Province</label>
+                  <span>{worker.province}</span>
+                </div>
+              )}
+              <div className="detail-item">
+                <label>Country</label>
+                <span>{worker.country || 'N/A'}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Professional Information */}
+          <div className="detail-section">
+            <h3>💼 Professional Information</h3>
+            <div className="detail-grid">
+              {worker.experience && (
+                <div className="detail-item">
+                  <label>Experience</label>
+                  <span>{worker.experience}</span>
+                </div>
+              )}
+              {worker.education && (
+                <div className="detail-item">
+                  <label>Education</label>
+                  <span>{worker.education}</span>
+                </div>
+              )}
+              {worker.availability && (
+                <div className="detail-item">
+                  <label>Availability</label>
+                  <span>{worker.availability}</span>
+                </div>
+              )}
+            </div>
+            {worker.skills && (
+              <div className="detail-item full-width">
+                <label>Skills & Specializations</label>
+                <div className="message-box">
+                  {worker.skills}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Additional Information */}
+          {worker.additionalInfo && (
+            <div className="detail-section">
+              <h3>📝 Additional Information</h3>
+              <div className="message-box">
+                {worker.additionalInfo}
+              </div>
+            </div>
+          )}
+
+          {/* Admin Note */}
+          {worker.adminNote && (
+            <div className="detail-section">
+              <h3>📌 Admin Note</h3>
+              <div className="admin-note-box">
+                {worker.adminNote}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="modal-footer">
+          <div className="modal-actions">
+            {worker.status !== 'accepted' && (
+              <button
+                onClick={() => {
+                  onStatusUpdate(worker.id, 'accepted');
+                  onClose();
+                }}
+                className="action-btn-modal accept"
+              >
+                ✅ Accept Worker
+              </button>
+            )}
+            {worker.status !== 'rejected' && (
+              <button
+                onClick={() => {
+                  onStatusUpdate(worker.id, 'rejected');
+                  onClose();
+                }}
+                className="action-btn-modal reject"
+              >
+                ❌ Reject Worker
               </button>
             )}
             <button onClick={onClose} className="action-btn-modal close">

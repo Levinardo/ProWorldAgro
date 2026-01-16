@@ -24,6 +24,7 @@ const isFirebaseAvailable = () => {
 // Collection names
 export const COLLECTIONS = {
   REGISTRATIONS: 'registrations',
+  WORKERS: 'workers',
   EVENTS: 'events',
   BLOGS: 'blogs',
   ADMINS: 'admins'
@@ -297,6 +298,122 @@ export const initializeAdmin = async () => {
     return { success: true, id: docRef.id };
   } catch (error) {
     console.error('Error initializing admin:', error);
+    return { success: false, error: error.message };
+  }
+};
+
+/**
+ * Save a worker registration to Firestore
+ */
+export const saveWorkerRegistration = async (workerData) => {
+  if (!isFirebaseAvailable()) {
+    return { success: false, error: 'Database not available. Please check Firebase configuration.' };
+  }
+
+  try {
+    const docRef = await addDoc(collection(db, COLLECTIONS.WORKERS), {
+      ...workerData,
+      status: 'submitted', // Default status for new worker registrations
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp()
+    });
+    return { success: true, id: docRef.id };
+  } catch (error) {
+    console.error('Error saving worker registration:', error);
+    return { success: false, error: error.message };
+  }
+};
+
+/**
+ * Get all worker registrations
+ */
+export const getWorkers = async () => {
+  if (!isFirebaseAvailable()) {
+    return { success: false, error: 'Database not available. Please check Firebase configuration.', data: [] };
+  }
+
+  try {
+    const q = query(
+      collection(db, COLLECTIONS.WORKERS),
+      orderBy('createdAt', 'desc')
+    );
+    const querySnapshot = await getDocs(q);
+    const workers = [];
+    querySnapshot.forEach((doc) => {
+      workers.push({ id: doc.id, ...doc.data() });
+    });
+    return { success: true, data: workers };
+  } catch (error) {
+    console.error('Error getting workers:', error);
+    return { success: false, error: error.message, data: [] };
+  }
+};
+
+/**
+ * Get workers with filtering
+ */
+export const getFilteredWorkers = async (filters = {}) => {
+  if (!isFirebaseAvailable()) {
+    return { success: false, error: 'Database not available. Please check Firebase configuration.', data: [] };
+  }
+
+  try {
+    let q = collection(db, COLLECTIONS.WORKERS);
+
+    // Apply worker type filter if provided
+    if (filters.workerType && filters.workerType !== 'all') {
+      q = query(q, where('workerType', '==', filters.workerType));
+    }
+
+    // Apply status filter if provided
+    if (filters.status && filters.status !== 'all') {
+      q = query(q, where('status', '==', filters.status));
+    }
+
+    // Apply date range filters
+    if (filters.startDate) {
+      const startTimestamp = new Date(filters.startDate);
+      startTimestamp.setHours(0, 0, 0, 0);
+      q = query(q, where('createdAt', '>=', startTimestamp));
+    }
+
+    if (filters.endDate) {
+      const endTimestamp = new Date(filters.endDate);
+      endTimestamp.setHours(23, 59, 59, 999);
+      q = query(q, where('createdAt', '<=', endTimestamp));
+    }
+
+    q = query(q, orderBy('createdAt', 'desc'));
+
+    const querySnapshot = await getDocs(q);
+    const workers = [];
+    querySnapshot.forEach((doc) => {
+      workers.push({ id: doc.id, ...doc.data() });
+    });
+    return { success: true, data: workers };
+  } catch (error) {
+    console.error('Error getting filtered workers:', error);
+    return { success: false, error: error.message, data: [] };
+  }
+};
+
+/**
+ * Update worker status
+ */
+export const updateWorkerStatus = async (workerId, status, adminNote = '') => {
+  if (!isFirebaseAvailable()) {
+    return { success: false, error: 'Database not available. Please check Firebase configuration.' };
+  }
+
+  try {
+    const updateData = {
+      status,
+      statusUpdatedAt: serverTimestamp(),
+      adminNote: adminNote || null
+    };
+    return await updateDocument(COLLECTIONS.WORKERS, workerId, updateData);
+  } catch (error) {
+    console.error('Error updating worker status:', error);
     return { success: false, error: error.message };
   }
 };

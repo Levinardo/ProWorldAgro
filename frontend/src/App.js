@@ -5,13 +5,16 @@ import { Toaster } from 'react-hot-toast';
 import './App.css';
 import Home from './pages/Home';
 import About from './pages/About';
+import Services from './pages/Services';
 import AgentOfDocumentation from './pages/AgentOfDocumentation';
 import Registration from './pages/Registration';
+import Workforce from './pages/Workforce';
 import Blogs from './pages/Blogs';
 import UpcomingEvents from './pages/UpcomingEvents';
 import Admin from './pages/Admin';
 import OfficialPartner from './pages/OfficialPartner';
 import WhyVisit from './pages/WhyVisit';
+import Marketplace from './pages/Marketplace';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -48,10 +51,13 @@ function App() {
             <Route path="/official-partner" element={<OfficialPartner />} />
             <Route path="/why-visit" element={<WhyVisit />} />
             <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/agent-of-documentation" element={<AgentOfDocumentation />} />
             <Route path="/registration" element={<Registration />} />
+            <Route path="/workforce" element={<Workforce />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/upcoming-events" element={<UpcomingEvents />} />
+            <Route path="/marketplace" element={<Marketplace />} />
             <Route path="/admin" element={<Admin />} />
           </Routes>
         </Layout>
