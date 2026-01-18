@@ -78,7 +78,9 @@ const EventCarousel = ({ items = [] }) => {
               key={currentIndex}
               className="carousel-media" 
               src={currentItem.url} 
-              alt={currentItem.title || 'Event image'} 
+              alt={currentItem.title || 'Event image'}
+              loading={currentIndex === 0 ? "eager" : "lazy"}
+              decoding="async"
             />
           )}
           {currentItem.title && (

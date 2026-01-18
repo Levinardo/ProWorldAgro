@@ -13,7 +13,13 @@ const Navbar = () => {
     <nav className="navbar glass-strong">
       <div className="navbar-content">
         <Link to="/" className="navbar-brand">
-          <img src="/logo/logo.png" alt="Livestock Professionals Logo" className="brand-icon" />
+          <img 
+            src="/logo/logo.png" 
+            alt="Livestock Professionals Logo" 
+            className="brand-icon"
+            loading="eager"
+            decoding="async"
+          />
           <div className="brand-text-container">
             <span className="brand-text">LIVESTOCK <span className="brand-text-brown">Professionals</span></span>
             <span className="brand-tagline">Pakistan's Gateway to Global Livestock & Agriculture</span>

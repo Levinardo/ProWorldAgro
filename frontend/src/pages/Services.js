@@ -78,6 +78,8 @@ const Services = () => {
                     src={`${process.env.PUBLIC_URL}${service.image}`}
                     alt={service.title}
                     className="service-card-image"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div className="service-card-content">

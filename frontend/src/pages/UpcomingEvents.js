@@ -91,7 +91,12 @@ const UpcomingEvents = () => {
             {upcomingEvents.map(event => (
               <div key={event.id} className="marketplace-card">
                 <div className="marketplace-card-image">
-                  <img src={event.image} alt={event.title} />
+                  <img 
+                    src={event.image} 
+                    alt={event.title}
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <div className="marketplace-card-overlay">
                     <h3 className="marketplace-card-title">{event.category}</h3>
                   </div>

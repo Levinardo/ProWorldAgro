@@ -148,7 +148,12 @@ const Home = () => {
             {marketplaceCategories.map((category, index) => (
               <div key={index} className="marketplace-card">
                 <div className="marketplace-card-image">
-                  <img src={category.image} alt={category.title} />
+                  <img 
+                    src={category.image} 
+                    alt={category.title}
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <div className="marketplace-card-overlay">
                     <h3 className="marketplace-card-title">{category.title} &gt;</h3>
           </div>

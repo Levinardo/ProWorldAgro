@@ -22,6 +22,20 @@ body {
   overflow-x: hidden;
 }
 
+/* Image optimization */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: optimize-quality;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent layout shift during image load */
+img[loading="lazy"] {
+  content-visibility: auto;
+}
+
 body::before {
   content: '';
   position: fixed;

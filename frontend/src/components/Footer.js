@@ -11,7 +11,13 @@ const Footer = () => {
       <div className="footer-container">
         <div className="footer-brand">
           <Link to="/" className="footer-logo-link">
-            <img src="/logo/logo.png" alt="Livestock Professionals Logo" className="footer-logo" />
+            <img 
+              src="/logo/logo.png" 
+              alt="Livestock Professionals Logo" 
+              className="footer-logo"
+              loading="lazy"
+              decoding="async"
+            />
             <span className="footer-brand-text">Livestock Professionals</span>
           </Link>
         </div>

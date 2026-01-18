@@ -276,6 +276,8 @@ const Workforce = () => {
                         src={type.image} 
                         alt={type.label}
                         className="worker-type-image"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </label>
                   ))}
