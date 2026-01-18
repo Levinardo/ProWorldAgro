@@ -68,7 +68,7 @@ const Home = () => {
         
         <div 
           className="hero-background"
-          style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/logo/background.png)` }}
+          style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/logo/background.jpg)` }}
         >
           <div className="hero-overlay"></div>
           <div className="hero-globe-overlay"></div>
@@ -179,7 +179,7 @@ const Home = () => {
       <section className="membership-section">
         <div 
           className="membership-background"
-          style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/logo/background.png)` }}
+          style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/logo/background.jpg)` }}
         ></div>
         <div className="container">
           <div className="membership-content">

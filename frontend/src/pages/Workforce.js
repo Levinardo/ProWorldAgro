@@ -176,7 +176,7 @@ const Workforce = () => {
       <section className="hero-section">
         <div 
           className="hero-background"
-          style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/logo/background2.png)` }}
+          style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/logo/background2.jpg)` }}
         >
           <div className="hero-overlay"></div>
           <div className="hero-globe-overlay"></div>
