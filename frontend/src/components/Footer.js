@@ -33,35 +33,16 @@ const Footer = () => {
                 <Link to="/about">{t('nav.about')}</Link>
               </li>
               <li>
-                <Link to="/agent-of-documentation">{t('nav.agentOfDocumentation')}</Link>
+                <Link to="/services">{t('nav.services')}</Link>
               </li>
               <li>
-                <Link to="/registration">{t('nav.registration')}</Link>
+                <Link to="/marketplace">{t('nav.marketplace')}</Link>
               </li>
               <li>
-                <Link to="/blogs">{t('nav.blogs')}</Link>
+                <Link to="/workforce">{t('nav.workforce')}</Link>
               </li>
               <li>
-                <Link to="/upcoming-events">{t('nav.upcomingEvents')}</Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Our Services Column */}
-          <div className="footer-column">
-            <h3 className="footer-title">{t('footer.ourServices')}</h3>
-            <ul className="footer-links">
-              <li>
-                <Link to="/upcoming-events">{t('footer.fairs')}</Link>
-              </li>
-              <li>
-                <Link to="/upcoming-events">{t('footer.tours')}</Link>
-              </li>
-              <li>
-                <Link to="/upcoming-events">{t('footer.congresses')}</Link>
-              </li>
-              <li>
-                <Link to="/agent-of-documentation">{t('footer.exportConsultancy')}</Link>
+                <Link to="/upcoming-events">{t('nav.trainingHub')}</Link>
               </li>
             </ul>
           </div>

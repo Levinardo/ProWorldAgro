@@ -10,12 +10,12 @@ const UpcomingEvents = () => {
     {
       id: 1,
       title: 'Sommet de l\'Élevage',
-      date: '6-9 oct 2025',
-      time: 'All Day',
+      date: '6-9 oct 2026',
+      time: 'All Days',
       location: 'France',
-      description: 'Join us for the premier international livestock exhibition featuring the latest innovations in agricultural technology, sustainable farming practices, and networking opportunities with industry leaders from around the world.',
-      category: 'Exhibition',
-      image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800',
+      description: 'Join us for the premier international livestock and agriculture exhibition featuring the latest innovations in agricultural technology, sustainable farming practices, and networking opportunities with industry leaders from around the world.',
+      category: 'International Expo France',
+      image: '/logo/sommet_image.png',
       registrationRequired: true
     }
   ];
@@ -26,7 +26,7 @@ const UpcomingEvents = () => {
       title: "Online Workshops",
       items: [
         "Modern farming techniques",
-        "Livestock management best practices",
+        "Livestock and agriculture management best practices",
         "Sustainable agriculture methods",
         "Digital farming tools"
       ]

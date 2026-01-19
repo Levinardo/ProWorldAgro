@@ -8,6 +8,7 @@ import {
   updateWorkerStatus,
   initializeAdmin
 } from '../services/firestore';
+import { downloadInvitationCard } from '../services/invitationCard';
 import './Admin.css';
 
 // Sidebar Navigation Items
@@ -414,7 +415,11 @@ const RegistrationManagement = () => {
     try {
       const result = await updateRegistrationStatus(registrationId, newStatus);
       if (result.success) {
-        toast.success(`Registration ${newStatus} successfully`);
+        if (newStatus === 'accepted') {
+          toast.success(`Registration ${newStatus} successfully! Invitation email will be sent.`);
+        } else {
+          toast.success(`Registration ${newStatus} successfully`);
+        }
         loadRegistrations();
       } else {
         toast.error('Failed to update status');
@@ -529,7 +534,8 @@ const RegistrationManagement = () => {
             <table className="registrations-table">
               <thead>
                 <tr>
-                  <th>Name</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
                   <th>Email</th>
                   <th>Phone</th>
                   <th>Status</th>
@@ -544,7 +550,8 @@ const RegistrationManagement = () => {
                     onClick={() => setSelectedRegistration(registration)}
                     className="clickable-row"
                   >
-                    <td data-label="Name">{registration.name || 'N/A'}</td>
+                    <td data-label="First Name">{registration.name || 'N/A'}</td>
+                    <td data-label="Last Name">{registration.surname || 'N/A'}</td>
                     <td data-label="Email">{registration.email || 'N/A'}</td>
                     <td data-label="Phone">{registration.phone || 'N/A'}</td>
                     <td data-label="Status">
@@ -630,8 +637,16 @@ const RegistrationDetailModal = ({ registration, onClose, onStatusUpdate, format
             <h3>👤 Personal Information</h3>
             <div className="detail-grid">
               <div className="detail-item">
-                <label>Full Name</label>
-                <span>{registration.name} {registration.surname}</span>
+                <label>First Name</label>
+                <span>{registration.name || 'N/A'}</span>
+              </div>
+              <div className="detail-item">
+                <label>Last Name</label>
+                <span>{registration.surname || 'N/A'}</span>
+              </div>
+              <div className="detail-item">
+                <label>Date of Birth</label>
+                <span>{registration.dateOfBirth || 'N/A'}</span>
               </div>
               <div className="detail-item">
                 <label>Email</label>
@@ -674,16 +689,18 @@ const RegistrationDetailModal = ({ registration, onClose, onStatusUpdate, format
               </div>
               <div className="detail-item">
                 <label>Passport Issue Date</label>
-                <span>{registration.passportIssueDate || 'N/A'}</span>
+                <span>{registration.passportIssueDate ? new Date(registration.passportIssueDate).toLocaleDateString() : 'N/A'}</span>
               </div>
               <div className="detail-item">
                 <label>Passport Expiry Date</label>
-                <span>{registration.passportExpiryDate || 'N/A'}</span>
+                <span>{registration.passportExpiryDate ? new Date(registration.passportExpiryDate).toLocaleDateString() : 'N/A'}</span>
               </div>
-              <div className="detail-item">
-                <label>Purpose of Visit</label>
-                <span>{registration.purposeOfVisit || 'N/A'}</span>
-              </div>
+              {registration.purposeOfVisit && (
+                <div className="detail-item">
+                  <label>Purpose of Visit</label>
+                  <span>{registration.purposeOfVisit}</span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -752,6 +769,24 @@ const RegistrationDetailModal = ({ registration, onClose, onStatusUpdate, format
 
         <div className="modal-footer">
           <div className="modal-actions">
+            {registration.status === 'accepted' && (
+              <button
+                onClick={async () => {
+                  try {
+                    toast.loading('Generating invitation card...');
+                    await downloadInvitationCard(registration);
+                    toast.dismiss();
+                    toast.success('Invitation card downloaded!');
+                  } catch (error) {
+                    toast.dismiss();
+                    toast.error('Failed to generate invitation card');
+                  }
+                }}
+                className="action-btn-modal download"
+              >
+                📥 Download Invitation Card
+              </button>
+            )}
             {registration.status !== 'accepted' && (
               <button
                 onClick={() => {
@@ -803,7 +838,7 @@ const WorkersManagement = () => {
     { value: 'farmer', label: 'Farmer' },
     { value: 'vet', label: 'Veterinarian' },
     { value: 'seeds', label: 'Seeds Specialist' },
-    { value: 'livestock', label: 'Livestock Manager' },
+    { value: 'livestock', label: 'Livestock & Agriculture Manager' },
     { value: 'agriculture', label: 'Agriculture Expert' },
     { value: 'dairy', label: 'Dairy Specialist' },
     { value: 'poultry', label: 'Poultry Expert' },
@@ -1156,6 +1191,18 @@ const WorkerDetailModal = ({ worker, onClose, onStatusUpdate, formatDate, getWor
                 <label>Phone</label>
                 <span>{worker.phone || 'N/A'}</span>
               </div>
+              {worker.passportCnic && (
+                <div className="detail-item">
+                  <label>Passport No / CNIC No</label>
+                  <span>{worker.passportCnic}</span>
+                </div>
+              )}
+              {worker.rvmpNumber && (
+                <div className="detail-item">
+                  <label>RVMP Number</label>
+                  <span>{worker.rvmpNumber}</span>
+                </div>
+              )}
               <div className="detail-item">
                 <label>Address</label>
                 <span>{worker.address || 'N/A'}</span>

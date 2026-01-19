@@ -183,8 +183,32 @@
     padding: 0 1rem;
   }
 
+  .navbar-brand {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .brand-text-container {
+    min-width: 0;
+  }
+
+  .brand-text {
+    font-size: 0.9rem;
+    letter-spacing: 0.2px;
+  }
+
+  .brand-tagline {
+    font-size: 0.6rem;
+    display: none;
+  }
+
+  .brand-icon {
+    height: 3rem;
+  }
+
   .mobile-menu-toggle {
     display: flex;
+    flex-shrink: 0;
   }
 
   .navbar-menu {
@@ -235,6 +259,25 @@
 
   .mobile-menu-toggle.active span:nth-child(3) {
     transform: rotate(-45deg) translate(7px, -7px);
+  }
+
+  .navbar-menu .language-switcher {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-text {
+    font-size: 0.75rem;
+  }
+
+  .brand-icon {
+    height: 2.5rem;
+  }
+
+  .navbar-content {
+    padding: 0 0.75rem;
   }
 }
 

@@ -51,7 +51,7 @@ const WhyVisit = () => {
           </div>
         </section>
 
-        {/* French Livestock Excellence Section */}
+        {/* French Livestock & Agriculture Excellence Section */}
         <section className="key-services-section">
           <h2 className="marketplace-title">{t('whyVisit.livestock.title')}</h2>
           <div className="services-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>

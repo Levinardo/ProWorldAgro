@@ -23,11 +23,11 @@ const Blogs = () => {
     },
     {
       id: 3,
-      title: "Livestock Management in Modern Times",
+      title: "Livestock & Agriculture Management in Modern Times",
       author: "Emma Williams",
       date: "March 5, 2024",
-      excerpt: "Modern livestock management practices that improve animal welfare and farm productivity. We discuss nutrition, housing, and health monitoring systems.",
-      category: "Livestock",
+      excerpt: "Modern livestock and agriculture management practices that improve animal welfare and farm productivity. We discuss nutrition, housing, and health monitoring systems.",
+      category: "Livestock & Agriculture",
       readTime: "6 min read"
     },
     {
@@ -114,7 +114,7 @@ const Blogs = () => {
                   }}>
                     {blog.category === 'Sustainability' ? '🌱' : 
                      blog.category === 'Organic Farming' ? '🌾' :
-                     blog.category === 'Livestock' ? '🐄' :
+                     blog.category === 'Livestock & Agriculture' ? '🐄' :
                      blog.category === 'Climate' ? '🌍' :
                      blog.category === 'Technology' ? '💻' :
                      blog.category === 'Farming Techniques' ? '🚜' :

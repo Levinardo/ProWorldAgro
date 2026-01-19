@@ -11,17 +11,19 @@ const Workforce = () => {
     lastName: '',
     email: '',
     phone: '',
+    passportCnic: '',
+    rvmpNumber: '',
     address: '',
     city: '',
     province: '',
     country: 'Pakistan',
     experience: '',
-    education: '',
     skills: '',
     availability: '',
     additionalInfo: ''
   });
 
+  const [educationEntries, setEducationEntries] = useState([{ id: Date.now(), value: '' }]);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [firebaseConnected, setFirebaseConnected] = useState(null);
@@ -39,9 +41,10 @@ const Workforce = () => {
     { value: 'farmer', label: 'Farmer', image: '/workforce/1.png' },
     { value: 'vet', label: 'Veterinarian', image: '/workforce/2.png' },
     { value: 'seeds', label: 'Seeds Specialist', image: '/workforce/3.png' },
-    { value: 'livestock', label: 'Livestock Manager', image: '/workforce/4.png' },
+    { value: 'livestock', label: 'Livestock & Agriculture Manager', image: '/workforce/4.png' },
     { value: 'agriculture', label: 'Agriculture Expert', image: '/workforce/5.png' },
-    { value: 'dairy', label: 'Dairy Specialist', image: '/workforce/6.png' }
+    { value: 'dairy', label: 'Dairy Specialist', image: '/workforce/6.png' },
+    { value: 'labour', label: 'Labour Worker', image: '/workforce/1.png' }
   ];
 
   const handleChange = (e) => {
@@ -56,6 +59,41 @@ const Workforce = () => {
       setErrors(prev => ({
         ...prev,
         [name]: ''
+      }));
+    }
+  };
+
+  const addEducation = () => {
+    setEducationEntries(prev => [
+      ...prev,
+      { id: Date.now(), value: '' }
+    ]);
+  };
+
+  const removeEducation = (id) => {
+    if (educationEntries.length > 1) {
+      setEducationEntries(prev => prev.filter(edu => edu.id !== id));
+      // Clear errors for removed education
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[`education_${id}`];
+        return newErrors;
+      });
+    }
+  };
+
+  const handleEducationChange = (id, value) => {
+    setEducationEntries(prev =>
+      prev.map(edu =>
+        edu.id === id ? { ...edu, value } : edu
+      )
+    );
+    // Clear error when user starts typing
+    const errorKey = `education_${id}`;
+    if (errors[errorKey]) {
+      setErrors(prev => ({
+        ...prev,
+        [errorKey]: ''
       }));
     }
   };
@@ -106,6 +144,7 @@ const Workforce = () => {
       try {
         const submissionData = {
           ...formData,
+          education: educationEntries.map(edu => edu.value).filter(val => val.trim() !== ''),
           submittedAt: new Date().toISOString()
         };
         
@@ -130,16 +169,18 @@ const Workforce = () => {
             lastName: '',
             email: '',
             phone: '',
+            passportCnic: '',
+            rvmpNumber: '',
             address: '',
             city: '',
             province: '',
             country: 'Pakistan',
             experience: '',
-            education: '',
             skills: '',
             availability: '',
             additionalInfo: ''
           });
+          setEducationEntries([{ id: Date.now(), value: '' }]);
         } else {
           toast.error(result.error || 'Failed to submit registration. Please try again.', {
             duration: 5000,
@@ -235,7 +276,7 @@ const Workforce = () => {
                   </div>
                   <div className="info-content-wrapper">
                     <strong>Email</strong>
-                    <p>info@sommet-elevage.pk</p>
+                    <p>info@livestockprofessionals.com</p>
                   </div>
                 </div>
                 <div className="info-item-card">
@@ -244,7 +285,7 @@ const Workforce = () => {
                   </div>
                   <div className="info-content-wrapper">
                     <strong>Phone</strong>
-                    <p>+92 XXX XXXXXXX</p>
+                    <p>+92 333 3132333</p>
                   </div>
                 </div>
               </div>
@@ -363,6 +404,36 @@ const Workforce = () => {
                 </div>
               </div>
 
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="passportCnic">
+                    Passport No / CNIC No
+                  </label>
+                  <input
+                    type="text"
+                    id="passportCnic"
+                    name="passportCnic"
+                    value={formData.passportCnic}
+                    onChange={handleChange}
+                    placeholder="Enter Passport Number or CNIC Number"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="rvmpNumber">
+                    RVMP Number
+                  </label>
+                  <input
+                    type="text"
+                    id="rvmpNumber"
+                    name="rvmpNumber"
+                    value={formData.rvmpNumber}
+                    onChange={handleChange}
+                    placeholder="Enter RVMP Number"
+                  />
+                </div>
+              </div>
+
               <div className="form-group full-width">
                 <label htmlFor="address">
                   Address <span className="required">*</span>
@@ -437,18 +508,64 @@ const Workforce = () => {
                     placeholder="e.g., 5 years"
                   />
                 </div>
+              </div>
 
-                <div className="form-group">
+              <div className="form-group full-width">
+                <div className="education-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                   <label htmlFor="education">Education</label>
-                  <input
-                    type="text"
-                    id="education"
-                    name="education"
-                    value={formData.education}
-                    onChange={handleChange}
-                    placeholder="e.g., BSc Agriculture"
-                  />
+                  <button
+                    type="button"
+                    onClick={addEducation}
+                    className="add-education-btn"
+                    style={{
+                      background: 'var(--btn-primary-bg)',
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: '6px',
+                      padding: '0.4rem 0.8rem',
+                      cursor: 'pointer',
+                      fontSize: '0.9rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.3rem',
+                      fontWeight: 600
+                    }}
+                  >
+                    <span>+</span> Add Education
+                  </button>
                 </div>
+                {educationEntries.map((education, index) => (
+                  <div key={education.id} style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem', alignItems: 'flex-start' }}>
+                    <input
+                      type="text"
+                      value={education.value}
+                      onChange={(e) => handleEducationChange(education.id, e.target.value)}
+                      placeholder="e.g., BSc Agriculture"
+                      style={{ flex: 1 }}
+                      className={errors[`education_${education.id}`] ? 'error' : ''}
+                    />
+                    {educationEntries.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => removeEducation(education.id)}
+                        style={{
+                          background: '#f44336',
+                          color: '#fff',
+                          border: 'none',
+                          borderRadius: '6px',
+                          padding: '0.5rem 0.8rem',
+                          cursor: 'pointer',
+                          fontSize: '1rem',
+                          fontWeight: 'bold',
+                          minWidth: '40px'
+                        }}
+                        aria-label="Remove education"
+                      >
+                        ×
+                      </button>
+                    )}
+                  </div>
+                ))}
               </div>
 
               <div className="form-group full-width">

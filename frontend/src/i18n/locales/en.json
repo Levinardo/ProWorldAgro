@@ -4,13 +4,18 @@
     "officialPartner": "Official Partner",
     "whyVisit": "Why Visit?",
     "about": "About Us",
+    "services": "Services",
+    "marketplace": "Marketplace",
+    "workforce": "Workforce",
+    "trainingHub": "Training Hub",
+    "contact": "Contact",
     "agentOfDocumentation": "Agent of Documentation",
     "registration": "Registration",
     "blogs": "News",
     "upcomingEvents": "Upcoming Events"
   },
   "home": {
-    "title": "Welcome to Livestock Professionals",
+    "title": "Welcome to Livestock & Agriculture Professionals",
     "subtitle": "Your comprehensive agricultural solutions platform",
     "heroTitle": "Transforming Agriculture",
     "heroSubtitle": "Empowering farmers with modern solutions",
@@ -24,7 +29,7 @@
     "agentDocService1": "Visa Documentation",
     "agentDocService1Desc": "Complete visa application support and guidance",
     "agentDocService2": "Event Registration",
-    "agentDocService2Desc": "Seamless registration for international livestock events",
+    "agentDocService2Desc": "Seamless registration for international livestock and agriculture events",
     "agentDocService3": "Business Coordination",
     "agentDocService3Desc": "Professional networking and partnership facilitation",
     "agentDocService4": "Documentation Support",
@@ -37,8 +42,8 @@
     "regBenefit5": "Increased visa success rate"
   },
   "about": {
-    "title": "About Livestock Professionals",
-    "description": "This is the about page of Livestock Professionals application."
+    "title": "About Livestock & Agriculture Professionals",
+    "description": "This is the about page of Livestock & Agriculture Professionals application."
   },
   "registration": {
     "title": "Sommet de l'Élevage – Registration",
@@ -68,8 +73,8 @@
     "fullPackage": "Full Service Package",
     "consultation": "Consultation Only",
     "other": "Other",
-    "name": "YOUR NAME",
-    "surname": "YOUR SURNAME",
+    "name": "FIRST NAME",
+    "surname": "LAST NAME",
     "institutionName": "INSTITUTION NAME",
     "emailAddress": "YOUR E-MAIL ADDRESS",
     "phoneNumber": "YOUR PHONE NUMBER",
@@ -126,13 +131,13 @@
   "officialPartner": {
     "title": "Pakistan × Sommet de l'Élevage",
     "subtitle": "Pakistan is the official partner with Sommet de l'Élevage — building stronger international connections in sustainable livestock and agriculture.",
-    "roleTitle": "Official Painter & Agent of Documentation",
+    "roleTitle": "Official Partner & Agent of Documentation",
     "roleKicker": "For Pakistan",
-    "roleDescription": "We are proud to serve as the official painter and agent of documentation for Pakistan for the world's number one suitable livestock show, held every year in October in Clermont-Ferrand, France.",
+    "roleDescription": "We are proud to serve as the official partner and agent of documentation for Pakistan for the world's number one suitable livestock and agriculture show, held every year in October in Clermont-Ferrand, France.",
     "roleService1": "Official documentation services for Pakistani participants",
-    "roleService2": "Professional painting and artistic representation",
+    "roleService2": "Official partner",
     "roleService3": "Annual event coordination in Clermont-Ferrand, France",
-    "roleService4": "World-class livestock exhibition support"
+    "roleService4": "World-class livestock and agriculture exhibition support"
   },
   "whyVisit": {
     "title": "Why visit?",
@@ -150,11 +155,11 @@
       "prayerRoom": "Prayer room"
     },
     "livestock": {
-      "title": "The excellence of French livestock",
+      "title": "The excellence of French livestock and agriculture",
       "eliteAnimals": "elite animals in competition",
       "breeds": "cattle, sheep, goat, and horse breeds",
       "competitions": "National competitions: Charolais and Simmental",
-      "auctions": "Livestock auctions"
+      "auctions": "Livestock and agriculture auctions"
     },
     "farmTours": {
       "title": "Farm Tours",

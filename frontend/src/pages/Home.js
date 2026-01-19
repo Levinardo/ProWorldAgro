@@ -20,7 +20,7 @@ const Home = () => {
     {
       sprite: '/icons/icons3.png',
       iconClass: 'icon-marketplace',
-      title: 'Livestock Marketplace',
+      title: 'Livestock & Agriculture Marketplace',
       description: 'Buy, sell, and trade livestock and agricultural products'
     },
     {
@@ -40,22 +40,28 @@ const Home = () => {
       iconClass: 'icon-consultancy',
       title: 'Farm Consultancy',
       description: 'Expert advice for modern farming practices'
+    },
+    {
+      sprite: '/icons/icons2.png',
+      iconClass: 'icon-agriculture-experts',
+      title: 'Agriculture Experts',
+      description: 'Connect with certified agriculture professionals and specialists'
     }
   ];
 
   const marketplaceCategories = [
     {
-      image: '/images/1.jpg',
+      image: '/cowseeds/1.png',
       title: 'Cattle & Buffalo',
       buttonText: 'View Listings >'
     },
     {
-      image: '/images/2.jpg',
+      image: '/cowseeds/2.png',
       title: 'Seeds & Fertilizers',
       buttonText: 'Browse Products >'
     },
     {
-      image: '/images/3.jpeg',
+      image: '/cowseeds/3.png',
       title: 'Farm Equipment',
       buttonText: 'Explore Equipment >'
     }
@@ -184,9 +190,9 @@ const Home = () => {
         <div className="container">
           <div className="membership-content">
             <p className="membership-text">Become a Verified Member of Pakistan's Global Agriculture Network</p>
-            <Link to="/registration" className="btn-gold">
+            {/* <Link to="/registration" className="btn-gold">
               Get Verified Now &gt;
-            </Link>
+            </Link> */}
           </div>
               </div>
       </section>
@@ -197,7 +203,7 @@ const Home = () => {
           <div className="participants-content">
             <div className="participants-text-content">
               <h2 className="participants-title">Pakistani People at Sommet de l'Élevage</h2>
-              <p className="participants-subtitle">Join Pakistan's Growing Presence at the World's Premier Livestock Event</p>
+              <p className="participants-subtitle">Join Pakistan's Growing Presence at the World's Premier Livestock & Agriculture Event</p>
               <p className="participants-description">
                 Pakistani professionals, farmers, and agricultural experts are making their mark at Sommet de l'Élevage in France. 
                 Be part of this international platform and connect with global leaders in livestock and agriculture.
@@ -245,14 +251,12 @@ const Home = () => {
           ></div>
           <div className="official-partner-diagonal-separator"></div>
         </div>
-        <div className="official-partner-flags">
-          <div className="flag-container">
-            <div className="flag-icon pakistan-flag">🇵🇰</div>
-          </div>
-          <div className="handshake-icon">🤝</div>
-          <div className="flag-container">
-            <div className="flag-icon france-flag">🇫🇷</div>
-          </div>
+        <div className="official-partner-features">
+          <ul className="official-partner-features-list">
+            <li>✓ Trade & investment opportunities</li>
+            <li>✓ Livestock, agriculture, dairy, beef, sheep & poultry focus</li>
+            <li>✓ Networking with international exhibitors</li>
+          </ul>
         </div>
         <div className="official-partner-overlay">
           <div className="official-partner-banner">

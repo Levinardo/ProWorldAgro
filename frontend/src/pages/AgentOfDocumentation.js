@@ -102,7 +102,7 @@ const AgentOfDocumentation = () => {
           <h2 className="marketplace-title">Extra Add-Ons (Optional)</h2>
           <div className="services-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
             {['Group travel management for Pakistani delegations', 'Media coverage or photography during event', 
-              'WhatsApp guidance during travel', 'Support in applying for future livestock events in Europe'].map((addon, idx) => (
+              'WhatsApp guidance during travel', 'Support in applying for future livestock and agriculture events in Europe'].map((addon, idx) => (
               <div key={idx} className="service-icon-card">
                 <div className="service-icon">🎯</div>
                 <h3 className="service-icon-title">{addon}</h3>

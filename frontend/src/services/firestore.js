@@ -2,6 +2,7 @@ import {
   collection,
   addDoc,
   getDocs,
+  getDoc,
   doc,
   updateDoc,
   deleteDoc,
@@ -11,6 +12,8 @@ import {
   serverTimestamp
 } from 'firebase/firestore';
 import { db } from './firebase';
+import { sendInvitationEmail } from './emailService';
+import { generateInvitationCardPDF } from './invitationCard';
 
 // Check if Firebase is available
 const isFirebaseAvailable = () => {
@@ -227,7 +230,52 @@ export const updateRegistrationStatus = async (registrationId, status, adminNote
       statusUpdatedAt: serverTimestamp(),
       adminNote: adminNote || null
     };
-    return await updateDocument(COLLECTIONS.REGISTRATIONS, registrationId, updateData);
+    
+    const result = await updateDocument(COLLECTIONS.REGISTRATIONS, registrationId, updateData);
+    
+    // If status is 'accepted', send invitation email with PDF
+    if (result.success && status === 'accepted') {
+      try {
+        // Get the registration data to send email
+        const registrationDocRef = doc(db, COLLECTIONS.REGISTRATIONS, registrationId);
+        const registrationDoc = await getDoc(registrationDocRef);
+        
+        if (registrationDoc.exists()) {
+          const registrationData = {
+            id: registrationId,
+            ...registrationDoc.data()
+          };
+          
+          // Generate invitation card PDF
+          try {
+            const pdfBase64 = await generateInvitationCardPDF(registrationData);
+            
+            // Send invitation email
+            const emailResult = await sendInvitationEmail(registrationData, pdfBase64);
+            
+            if (emailResult.success) {
+              console.log('Invitation email sent successfully');
+            } else {
+              console.warn('Failed to send invitation email:', emailResult.error);
+              // Don't fail the status update if email fails
+            }
+          } catch (pdfError) {
+            console.error('Error generating invitation card:', pdfError);
+            // Try sending email without PDF attachment
+            try {
+              await sendInvitationEmail(registrationData, null);
+            } catch (emailError) {
+              console.error('Error sending email:', emailError);
+            }
+          }
+        }
+      } catch (emailError) {
+        console.error('Error processing invitation email:', emailError);
+        // Don't fail the status update if email fails
+      }
+    }
+    
+    return result;
   } catch (error) {
     console.error('Error updating registration status:', error);
     return { success: false, error: error.message };

@@ -17,7 +17,7 @@ const Services = () => {
     {
       image: '/services/3.png',
       title: "Livestock & Agriculture Marketplace",
-      description: "A secure trading platform for cattle, buffalo, goats, sheep, poultry & exotic breeds, dairy & meat products, seeds, fertilizers & farm inputs, and farm machinery & equipment."
+      description: "A secure trading platform for cattle, buffalo, goats, sheep, poultry & exotic breeds, pets, dairy & meat products, seeds, fertilizers & farm inputs, medicines, and farm machinery & equipment."
     },
     {
       image: '/services/4.png',
@@ -36,18 +36,18 @@ const Services = () => {
     },
     {
       image: '/services/7.png',
-      title: "Additional Service 7",
-      description: "Comprehensive service offering for agricultural and livestock professionals."
+      title: "Medicines & Veterinary Supplies",
+      description: "Online marketplace for veterinary medicines, animal health products, vaccines, supplements, and all essential medical supplies for livestock and agriculture. Quality-assured products from trusted suppliers."
     },
     {
       image: '/services/8.png',
-      title: "Additional Service 8",
-      description: "Comprehensive service offering for agricultural and livestock professionals."
+      title: "Workers Marketplace & Online Qurbani Services",
+      description: "Connect with skilled agricultural and livestock workers. Professional workforce matching for farms and agricultural businesses. Plus, convenient online qurbani services for religious occasions with quality livestock selection and delivery."
     },
     {
       image: '/services/9.png',
-      title: "Additional Service 9",
-      description: "Comprehensive service offering for agricultural and livestock professionals."
+      title: "Used Farm Equipment Marketplace & 24/7 Consultancy",
+      description: "Buy and sell used farm machinery, agricultural equipment, and tools. Access 24/7 online consultancy services for farming issues, crop management, livestock care, and agricultural problem-solving. Expert advice available round the clock."
     },
     {
       image: '/services/10.png',

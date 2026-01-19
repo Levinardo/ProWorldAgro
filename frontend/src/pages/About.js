@@ -26,9 +26,9 @@ const About = () => {
       title: "Livestock & Agriculture Marketplace",
       items: [
         "A secure trading platform for:",
-        "• Cattle, buffalo, goats, sheep, poultry & exotic breeds",
+        "• Cattle, buffalo, goats, sheep, poultry & exotic breeds, pets",
         "• Dairy & meat products",
-        "• Seeds, fertilizers & farm inputs",
+        "• Seeds, fertilizers & farm inputs, medicines",
         "• Farm machinery & equipment",
         "(Buy • Sell • Advertise • Connect)"
       ]
@@ -135,7 +135,7 @@ const About = () => {
 
         {/* Why Livestock Professionals */}
         <section className="key-services-section">
-          <h2 className="marketplace-title" style={{ marginBottom: '3rem' }}>Why Livestock Professionals?</h2>
+          <h2 className="marketplace-title" style={{ marginBottom: '3rem' }}>Why Livestock & Agriculture Professionals?</h2>
           <div className="services-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))' }}>
             {benefits.map((benefit, index) => (
               <div key={index} className="service-icon-card">

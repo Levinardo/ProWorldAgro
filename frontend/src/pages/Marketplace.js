@@ -21,7 +21,7 @@ const Marketplace = () => {
             <div className="coming-soon-features">
               <div className="feature-item">
                 <h3>Cattle & Buffalo</h3>
-                <p>Premium livestock trading</p>
+                <p>Premium livestock and agriculture trading</p>
               </div>
               <div className="feature-item">
                 <h3>Seeds & Fertilizers</h3>

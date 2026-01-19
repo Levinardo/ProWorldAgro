@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './OfficialPartner.css';
 import EventCarousel from '../components/EventCarousel';
@@ -23,7 +24,7 @@ const OfficialPartner = () => {
         type: 'image',
         url: '/images/1.jpg',
         title: 'Sommet de l\'Élevage',
-        description: 'International livestock exhibition',
+        description: 'International livestock and agriculture exhibition',
         photographer: 'Lucas Herit Photo'
       },
       {
@@ -44,7 +45,7 @@ const OfficialPartner = () => {
         type: 'image',
         url: '/images/4.jpeg',
         title: 'Sommet de l\'Élevage',
-        description: 'Premier livestock showcase',
+        description: 'Premier livestock and agriculture showcase',
         photographer: ''
       },
       {
@@ -78,14 +79,10 @@ const OfficialPartner = () => {
         <div className="mission-vision-grid">
           <div className="mission-vision-item">
             <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🇵🇰</div>
-            <h2 className="mission-vision-heading">Pakistan</h2>
-            <p className="mission-vision-text" style={{ marginBottom: '1.5rem' }}>
-              A strong and fast-growing livestock and agricultural market — ready for global partnerships,
-              innovation, and international collaboration.
-            </p>
+            <h2 className="mission-vision-heading">🇵🇰 🤝 🇫🇷 Pakistan</h2>
             <ul style={{ listStyle: 'none', padding: 0, textAlign: 'left', maxWidth: '400px', margin: '0 auto' }}>
               <li style={{ marginBottom: '0.5rem', color: '#7f8c8d' }}>✓ Trade & investment opportunities</li>
-              <li style={{ marginBottom: '0.5rem', color: '#7f8c8d' }}>✓ Livestock, dairy, beef, sheep & poultry focus</li>
+              <li style={{ marginBottom: '0.5rem', color: '#7f8c8d' }}>✓ Livestock, agriculture, dairy, beef, sheep & poultry focus</li>
               <li style={{ marginBottom: '0.5rem', color: '#7f8c8d' }}>✓ Networking with international exhibitors</li>
             </ul>
           </div>
@@ -94,7 +91,7 @@ const OfficialPartner = () => {
             <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🐄</div>
             <h2 className="mission-vision-heading">Sommet de l'Élevage</h2>
             <p className="mission-vision-text" style={{ marginBottom: '1.5rem' }}>
-              A global platform for sustainable livestock, genetics, equipment, and agricultural innovation —
+              A global platform for sustainable livestock and agriculture, genetics, equipment, and agricultural innovation —
               connecting professionals from around the world.
             </p>
             <ul style={{ listStyle: 'none', padding: 0, textAlign: 'left', maxWidth: '400px', margin: '0 auto' }}>
@@ -155,6 +152,11 @@ const OfficialPartner = () => {
                   <div className="service-icon">✓</div>
                   <h3 className="service-icon-title">{t('officialPartner.roleService4')}</h3>
                 </div>
+              </div>
+              <div style={{ marginTop: '3rem', display: 'flex', justifyContent: 'center' }}>
+                <Link to="/registration" className="btn-gold official-partner-register-btn">
+                  Register for Sommet 2026 &gt;
+                </Link>
               </div>
             </div>
           </div>

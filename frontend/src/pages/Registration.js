@@ -14,6 +14,10 @@ const Registration = () => {
     institutionName: '',
     requestType: '',
     eventDate: '',
+    passportNumber: '',
+    passportIssueDate: '',
+    passportExpiryDate: '',
+    dateOfBirth: '',
     services: [],
     message: '',
     consentCommercial: false,
@@ -113,6 +117,23 @@ const Registration = () => {
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = t('registration.validEmail');
     }
+    if (!formData.passportNumber.trim()) {
+      newErrors.passportNumber = t('registration.pleaseFillField');
+    }
+    if (!formData.passportIssueDate) {
+      newErrors.passportIssueDate = t('registration.pleaseFillField');
+    }
+    if (!formData.passportExpiryDate) {
+      newErrors.passportExpiryDate = t('registration.pleaseFillField');
+    }
+    if (!formData.dateOfBirth) {
+      newErrors.dateOfBirth = t('registration.pleaseFillField');
+    } else {
+      const birthYear = new Date(formData.dateOfBirth).getFullYear();
+      if (birthYear > 1955) {
+        newErrors.dateOfBirth = 'Date of birth must be on or before 1955';
+      }
+    }
     if (!formData.requestType) {
       newErrors.requestType = t('registration.pleaseSelectRequestType');
     }
@@ -167,6 +188,10 @@ const Registration = () => {
               institutionName: '',
               requestType: '',
               eventDate: '',
+              passportNumber: '',
+              passportIssueDate: '',
+              passportExpiryDate: '',
+              dateOfBirth: '',
               services: [],
               message: '',
               consentCommercial: false,
@@ -201,10 +226,9 @@ const Registration = () => {
     <div className="registration-page">
       <div className="container">
         <div className="registration-header glass-card">
-          <div className="flag-emoji">🇵🇰</div>
           <h1>{t('registration.title')}</h1>
           <h2>{t('registration.subtitle')}</h2>
-          <p className="subtitle">{t('registration.description')}</p>
+          <p className="registration-description">{t('registration.description')}</p>
         </div>
 
         {submitted && (
@@ -217,26 +241,34 @@ const Registration = () => {
         <div className="registration-content">
           <div className="registration-info">
             <div className="info-section glass-card">
-              <h3>{t('registration.contactInfo')}</h3>
-              <div className="info-item">
-                <span className="info-icon">📍</span>
-                <div>
-                  <strong>{t('registration.officeLocation')}</strong>
-                  <p>Pakistan</p>
+              <h3 className="info-section-title">{t('registration.contactInfo')}</h3>
+              <div className="info-items-grid">
+                <div className="info-item-card">
+                  <div className="info-icon-wrapper">
+                    <span className="info-icon">📍</span>
+                  </div>
+                  <div className="info-content-wrapper">
+                    <strong>{t('registration.officeLocation')}</strong>
+                    <p>Pakistan</p>
+                  </div>
                 </div>
-              </div>
-              <div className="info-item">
-                <span className="info-icon">✉️</span>
-                <div>
-                  <strong>{t('registration.email')}</strong>
-                  <p>info@agentofdocumentation.pk</p>
+                <div className="info-item-card">
+                  <div className="info-icon-wrapper">
+                    <span className="info-icon">✉️</span>
+                  </div>
+                  <div className="info-content-wrapper">
+                    <strong>{t('registration.email')}</strong>
+                    <p>info@livestockprofessionals.com</p>
+                  </div>
                 </div>
-              </div>
-              <div className="info-item">
-                <span className="info-icon">📞</span>
-                <div>
-                  <strong>{t('registration.phone')}</strong>
-                  <p>+92 XXX XXXXXXX</p>
+                <div className="info-item-card">
+                  <div className="info-icon-wrapper">
+                    <span className="info-icon">📞</span>
+                  </div>
+                  <div className="info-content-wrapper">
+                    <strong>{t('registration.phone')}</strong>
+                    <p>+92 333 3132333</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -307,7 +339,7 @@ const Registration = () => {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="name">
-                    {t('registration.name')} <span className="required">{t('registration.required')}</span>
+                    First Name <span className="required">{t('registration.required')}</span>
                   </label>
                   <input
                     type="text"
@@ -325,7 +357,7 @@ const Registration = () => {
 
                 <div className="form-group">
                   <label htmlFor="surname">
-                    {t('registration.surname')} <span className="required">{t('registration.required')}</span>
+                    Last Name <span className="required">{t('registration.required')}</span>
                   </label>
                   <input
                     type="text"
@@ -372,6 +404,80 @@ const Registration = () => {
                   />
                   {errors.email && (
                     <span className="error-message">{errors.email}</span>
+                  )}
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="passportNumber">
+                    Passport Number <span className="required">{t('registration.required')}</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="passportNumber"
+                    name="passportNumber"
+                    value={formData.passportNumber}
+                    onChange={handleChange}
+                    className={errors.passportNumber ? 'error' : ''}
+                    placeholder="Enter passport number"
+                  />
+                  {errors.passportNumber && (
+                    <span className="error-message">{errors.passportNumber}</span>
+                  )}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="dateOfBirth">
+                    Date of Birth <span className="required">{t('registration.required')}</span>
+                  </label>
+                  <input
+                    type="date"
+                    id="dateOfBirth"
+                    name="dateOfBirth"
+                    value={formData.dateOfBirth}
+                    onChange={handleChange}
+                    className={errors.dateOfBirth ? 'error' : ''}
+                    max="1955-12-31"
+                  />
+                  {errors.dateOfBirth && (
+                    <span className="error-message">{errors.dateOfBirth}</span>
+                  )}
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="passportIssueDate">
+                    Passport Issue Date <span className="required">{t('registration.required')}</span>
+                  </label>
+                  <input
+                    type="date"
+                    id="passportIssueDate"
+                    name="passportIssueDate"
+                    value={formData.passportIssueDate}
+                    onChange={handleChange}
+                    className={errors.passportIssueDate ? 'error' : ''}
+                  />
+                  {errors.passportIssueDate && (
+                    <span className="error-message">{errors.passportIssueDate}</span>
+                  )}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="passportExpiryDate">
+                    Passport Expiry Date <span className="required">{t('registration.required')}</span>
+                  </label>
+                  <input
+                    type="date"
+                    id="passportExpiryDate"
+                    name="passportExpiryDate"
+                    value={formData.passportExpiryDate}
+                    onChange={handleChange}
+                    className={errors.passportExpiryDate ? 'error' : ''}
+                  />
+                  {errors.passportExpiryDate && (
+                    <span className="error-message">{errors.passportExpiryDate}</span>
                   )}
                 </div>
               </div>
