@@ -44,7 +44,7 @@ const Workforce = () => {
     { value: 'livestock', label: 'Livestock & Agriculture Manager', image: '/workforce/4.png' },
     { value: 'agriculture', label: 'Agriculture Expert', image: '/workforce/5.png' },
     { value: 'dairy', label: 'Dairy Specialist', image: '/workforce/6.png' },
-    { value: 'labour', label: 'Labour Worker', image: '/workforce/1.png' }
+    { value: 'labour', label: 'Labour Worker', image: '/images/8.png' }
   ];
 
   const handleChange = (e) => {

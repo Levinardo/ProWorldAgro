@@ -18,6 +18,7 @@ const Registration = () => {
     passportIssueDate: '',
     passportExpiryDate: '',
     dateOfBirth: '',
+    country: '',
     services: [],
     message: '',
     consentCommercial: false,
@@ -112,6 +113,9 @@ const Registration = () => {
     if (!formData.phone.trim()) {
       newErrors.phone = t('registration.pleaseFillField');
     }
+    if (!formData.country.trim()) {
+      newErrors.country = t('registration.pleaseFillField');
+    }
     if (!formData.email.trim()) {
       newErrors.email = t('registration.pleaseFillField');
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -192,6 +196,7 @@ const Registration = () => {
               passportIssueDate: '',
               passportExpiryDate: '',
               dateOfBirth: '',
+              country: '',
               services: [],
               message: '',
               consentCommercial: false,
@@ -501,6 +506,26 @@ const Registration = () => {
                   )}
                 </div>
 
+                <div className="form-group">
+                  <label htmlFor="country">
+                    Country <span className="required">{t('registration.required')}</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="country"
+                    name="country"
+                    value={formData.country}
+                    onChange={handleChange}
+                    className={errors.country ? 'error' : ''}
+                    placeholder="Enter your country"
+                  />
+                  {errors.country && (
+                    <span className="error-message">{errors.country}</span>
+                  )}
+                </div>
+              </div>
+
+              <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="eventDate">
                     {t('registration.eventDate')}

@@ -9,6 +9,10 @@ const Navbar = () => {
 
   const isActive = (path) => location.pathname === path;
 
+  const closeMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <nav className="navbar glass-strong">
       <div className="navbar-content">
@@ -36,13 +40,30 @@ const Navbar = () => {
           <span></span>
         </button>
 
+        {/* Backdrop overlay */}
+        <div 
+          className={`mobile-menu-backdrop ${isMobileMenuOpen ? 'active' : ''}`}
+          onClick={closeMenu}
+          aria-label="Close menu"
+        ></div>
+
         <div className={`navbar-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+          <div className="mobile-menu-header">
+            <h3 className="mobile-menu-title">Menu</h3>
+            <button 
+              className="mobile-menu-close"
+              onClick={closeMenu}
+              aria-label="Close menu"
+            >
+              ×
+            </button>
+          </div>
           <ul className="navbar-links">
             <li>
               <Link 
                 to="/" 
                 className={isActive('/') ? 'active' : ''}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={closeMenu}
               >
                 Home
               </Link>
@@ -51,7 +72,7 @@ const Navbar = () => {
               <Link 
                 to="/about" 
                 className={isActive('/about') ? 'active' : ''}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={closeMenu}
               >
                 About Us
               </Link>
@@ -60,7 +81,7 @@ const Navbar = () => {
               <Link 
                 to="/services" 
                 className={isActive('/services') ? 'active' : ''}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={closeMenu}
               >
                 Services
               </Link>
@@ -69,7 +90,7 @@ const Navbar = () => {
               <Link 
                 to="/marketplace" 
                 className={isActive('/marketplace') ? 'active' : ''}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={closeMenu}
               >
                 Marketplace
               </Link>
@@ -78,7 +99,7 @@ const Navbar = () => {
               <Link 
                 to="/workforce" 
                 className={isActive('/workforce') ? 'active' : ''}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={closeMenu}
               >
                 Workforce
               </Link>
@@ -87,7 +108,7 @@ const Navbar = () => {
               <Link 
                 to="/upcoming-events" 
                 className={isActive('/upcoming-events') ? 'active' : ''}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={closeMenu}
               >
                 Training Hub
               </Link>
@@ -96,7 +117,7 @@ const Navbar = () => {
               <Link 
                 to="/contact" 
                 className={isActive('/contact') ? 'active' : ''}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={closeMenu}
               >
                 Contact
               </Link>

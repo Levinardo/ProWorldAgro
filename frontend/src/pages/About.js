@@ -58,7 +58,7 @@ const About = () => {
     "Trusted International Partner",
     "Verified Buyers & Sellers",
     "Professional Authentication System",
-    "Pakistan-focused but Globally Connected",
+    "Pakistan-Linked Globally Connected",
     "Secure & Transparent Operations",
     "Multi-language Support",
     "Modern Digital Experience"

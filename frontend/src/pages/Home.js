@@ -92,12 +92,12 @@ const Home = () => {
         <div className="hero-buttons-wrapper">
           <div className="hero-buttons">
             <Link to="/registration" className="btn-hero-green">
-              Join as Professional &gt;
+              Register for Sommet de l'Élevage &gt;
             </Link>
-            <Link to="/marketplace" className="btn-hero-gold">
+            <span className="btn-hero-gold" style={{ cursor: 'default' }}>
               Explore Marketplace &gt;
-            </Link>
-            <Link to="/registration" className="btn-hero-gold">
+            </span>
+            <Link to="/workforce" className="btn-hero-gold">
               Register as Worker &gt;
             </Link>
           </div>

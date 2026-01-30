@@ -538,6 +538,7 @@ const RegistrationManagement = () => {
                   <th>Last Name</th>
                   <th>Email</th>
                   <th>Phone</th>
+                  <th>Country</th>
                   <th>Status</th>
                   <th>Date</th>
                   <th>Actions</th>
@@ -554,6 +555,7 @@ const RegistrationManagement = () => {
                     <td data-label="Last Name">{registration.surname || 'N/A'}</td>
                     <td data-label="Email">{registration.email || 'N/A'}</td>
                     <td data-label="Phone">{registration.phone || 'N/A'}</td>
+                    <td data-label="Country">{registration.country || 'N/A'}</td>
                     <td data-label="Status">
                       <span className={`status-badge status-${registration.status || 'submitted'}`}>
                         {registration.status || 'submitted'}
@@ -655,6 +657,10 @@ const RegistrationDetailModal = ({ registration, onClose, onStatusUpdate, format
               <div className="detail-item">
                 <label>Phone</label>
                 <span>{registration.phone || 'N/A'}</span>
+              </div>
+              <div className="detail-item">
+                <label>Country</label>
+                <span>{registration.country || 'N/A'}</span>
               </div>
               <div className="detail-item">
                 <label>Legal Status</label>
