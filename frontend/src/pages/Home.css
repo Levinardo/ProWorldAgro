@@ -1119,12 +1119,14 @@
   }
 
   .hero-buttons-wrapper {
+    position: absolute;
     bottom: 2rem;
+    left: 0;
+    right: 0;
     padding: 0 1rem;
-    position: relative;
     transform: none;
-    left: auto;
-    margin-top: 2rem;
+    margin-top: 0;
+    z-index: 6;
   }
 
   .hero-buttons {
@@ -1133,13 +1135,16 @@
     justify-content: center;
     gap: 1rem;
     width: 100%;
+    max-width: 100%;
   }
 
-  .hero-buttons a {
+  .hero-buttons a,
+  .hero-buttons span {
     width: 100%;
     text-align: center;
     padding: 0.875rem 1.5rem;
     font-size: 0.95rem;
+    display: block;
   }
 
   .key-services-section {
