@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import './EventCarousel.css';
 
 const EventCarousel = ({ items = [] }) => {
+  const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -39,7 +41,7 @@ const EventCarousel = ({ items = [] }) => {
     return (
       <div className="event-carousel">
         <div className="carousel-empty">
-          <p>No events to display</p>
+          <p>{t('eventCarousel.noEvents')}</p>
         </div>
       </div>
     );
@@ -89,7 +91,7 @@ const EventCarousel = ({ items = [] }) => {
               {currentItem.description && <p>{currentItem.description}</p>}
               {currentItem.photographer && currentItem.photographer.trim() && (
                 <div className="carousel-photographer">
-                  <span className="photographer-label">Photo by:</span>
+                  <span className="photographer-label">{t('eventCarousel.photoBy')}</span>
                   <span className="photographer-name">{currentItem.photographer}</span>
                 </div>
               )}

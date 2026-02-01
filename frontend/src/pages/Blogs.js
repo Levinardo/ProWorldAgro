@@ -1,7 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import './Blogs.css';
 
 const Blogs = () => {
+  const { t } = useTranslation();
   const blogs = [
     {
       id: 1,
@@ -129,12 +131,12 @@ const Blogs = () => {
                   <h2 style={{ fontSize: '1.5rem', color: '#1f5a3a', marginBottom: '1rem', fontWeight: 700 }}>{blog.title}</h2>
                   <p style={{ color: '#7f8c8d', lineHeight: '1.6', marginBottom: '1rem', fontSize: '0.95rem' }}>{blog.excerpt}</p>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', fontSize: '0.85rem', color: '#7f8c8d' }}>
-                    <span>By {blog.author}</span>
+                    <span>{t('blogsPage.by')} {blog.author}</span>
                     <span>{blog.readTime}</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontSize: '0.85rem', color: '#7f8c8d' }}>{blog.date}</span>
-                    <button className="btn-gold" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>Read More</button>
+                    <button className="btn-gold" style={{ padding: '0.5rem 1rem', fontSize: '0.9rem' }}>{t('blogsPage.readMore')}</button>
                   </div>
                 </div>
               </article>

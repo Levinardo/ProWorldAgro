@@ -18,6 +18,7 @@ import Marketplace from './pages/Marketplace';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfUse from './pages/TermsOfUse';
 import CookiePolicy from './pages/CookiePolicy';
+import Contact from './pages/Contact';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -61,6 +62,7 @@ function App() {
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/upcoming-events" element={<UpcomingEvents />} />
             <Route path="/marketplace" element={<Marketplace />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsOfUse />} />
             <Route path="/cookies" element={<CookiePolicy />} />

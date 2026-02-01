@@ -1,7 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import './Marketplace.css';
 
 const Marketplace = () => {
+  const { t } = useTranslation();
 
   return (
     <div className="marketplace-page">
@@ -14,28 +16,28 @@ const Marketplace = () => {
                 <path d="M40 60 L55 75 L80 45" stroke="#1f5a3a" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
-            <h1 className="coming-soon-title">Marketplace Coming Soon</h1>
+            <h1 className="coming-soon-title">{t('marketplacePage.comingSoon')}</h1>
             <p className="coming-soon-subtitle">
-              We're building an amazing platform for buying, selling, and trading livestock and agricultural products.
+              {t('marketplacePage.subtitle')}
             </p>
             <div className="coming-soon-features">
               <div className="feature-item">
-                <h3>Cattle & Buffalo</h3>
-                <p>Premium livestock and agriculture trading</p>
+                <h3>{t('marketplacePage.feature1Title')}</h3>
+                <p>{t('marketplacePage.feature1Desc')}</p>
               </div>
               <div className="feature-item">
-                <h3>Seeds & Fertilizers</h3>
-                <p>Quality agricultural inputs</p>
+                <h3>{t('marketplacePage.feature2Title')}</h3>
+                <p>{t('marketplacePage.feature2Desc')}</p>
               </div>
               <div className="feature-item">
-                <h3>Farm Equipment</h3>
-                <p>Modern farming machinery</p>
+                <h3>{t('marketplacePage.feature3Title')}</h3>
+                <p>{t('marketplacePage.feature3Desc')}</p>
               </div>
             </div>
             <div className="coming-soon-cta">
-              <p className="notify-text">Get notified when we launch</p>
+              <p className="notify-text">{t('marketplacePage.notifyText')}</p>
               <button className="btn-gold" onClick={() => window.location.href = '/contact'}>
-                Contact Us &gt;
+                {t('marketplacePage.contactUs')}
               </button>
             </div>
           </div>

@@ -1529,3 +1529,10 @@
   }
 }
 
+/* Visitor Statistics Section */
+.visitor-stats-section {
+  padding: 0;
+  background: transparent;
+  width: 100%;
+}
+

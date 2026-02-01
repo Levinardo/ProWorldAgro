@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import { saveWorkerRegistration } from '../services/firestore';
 import { testFirebaseConnection } from '../services/firebase';
 import './Workforce.css';
 
 const Workforce = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     workerType: '',
     firstName: '',
@@ -102,27 +104,27 @@ const Workforce = () => {
     const newErrors = {};
 
     if (!formData.workerType) {
-      newErrors.workerType = 'Please select a worker type';
+      newErrors.workerType = t('workforcePage.selectWorkerType');
     }
     if (!formData.firstName.trim()) {
-      newErrors.firstName = 'First name is required';
+      newErrors.firstName = t('workforcePage.firstNameRequired');
     }
     if (!formData.lastName.trim()) {
-      newErrors.lastName = 'Last name is required';
+      newErrors.lastName = t('workforcePage.lastNameRequired');
     }
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = t('workforcePage.emailRequired');
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = t('workforcePage.validEmail');
     }
     if (!formData.phone.trim()) {
-      newErrors.phone = 'Phone number is required';
+      newErrors.phone = t('workforcePage.phoneRequired');
     }
     if (!formData.address.trim()) {
-      newErrors.address = 'Address is required';
+      newErrors.address = t('workforcePage.addressRequired');
     }
     if (!formData.city.trim()) {
-      newErrors.city = 'City is required';
+      newErrors.city = t('workforcePage.cityRequired');
     }
 
     setErrors(newErrors);
@@ -135,7 +137,7 @@ const Workforce = () => {
     if (validate()) {
       // Check Firebase connection before submitting
       if (firebaseConnected === false) {
-        setErrors({ submit: 'Database connection failed. Please check your Firebase configuration.' });
+        setErrors({ submit: t('workforcePage.dbError') });
         return;
       }
 
@@ -225,9 +227,9 @@ const Workforce = () => {
         <div className="hero-content-wrapper">
           <div className="hero-content">
             <div className="hero-text-content">
-              <h1 className="hero-main-title">Join Our Workforce</h1>
-              <p className="hero-brown-text">Connect with Leading Agricultural Professionals</p>
-              <p className="hero-subtitle">Register as Farmer, Veterinarian, Seeds Specialist & More</p>
+              <h1 className="hero-main-title">{t('workforcePage.heroTitle')}</h1>
+              <p className="hero-brown-text">{t('workforcePage.heroSubtitle')}</p>
+              <p className="hero-subtitle">{t('workforcePage.heroDescription')}</p>
             </div>
           </div>
         </div>
@@ -237,36 +239,36 @@ const Workforce = () => {
         <div className="workforce-content">
           <div className="workforce-info">
             <div className="info-section glass-card">
-              <h3 className="info-section-title">Join Our Workforce</h3>
+              <h3 className="info-section-title">{t('workforcePage.joinTitle')}</h3>
               <div className="benefits-list">
                 <div className="benefit-item">
                   <span className="benefit-check">✓</span>
-                  <span>Connect with leading agricultural professionals</span>
+                  <span>{t('workforcePage.benefit1')}</span>
                 </div>
                 <div className="benefit-item">
                   <span className="benefit-check">✓</span>
-                  <span>Access to training and development opportunities</span>
+                  <span>{t('workforcePage.benefit2')}</span>
                 </div>
                 <div className="benefit-item">
                   <span className="benefit-check">✓</span>
-                  <span>Network with industry experts</span>
+                  <span>{t('workforcePage.benefit3')}</span>
                 </div>
                 <div className="benefit-item">
                   <span className="benefit-check">✓</span>
-                  <span>Be part of Pakistan's agricultural growth</span>
+                  <span>{t('workforcePage.benefit4')}</span>
                 </div>
               </div>
             </div>
 
             <div className="info-section glass-card">
-              <h3 className="info-section-title">Contact Information</h3>
+              <h3 className="info-section-title">{t('workforcePage.contactInfo')}</h3>
               <div className="info-items-grid">
                 <div className="info-item-card">
                   <div className="info-icon-wrapper">
                     <span className="info-icon">📍</span>
                   </div>
                   <div className="info-content-wrapper">
-                    <strong>Office Location</strong>
+                    <strong>{t('workforcePage.officeLocation')}</strong>
                     <p>Pakistan</p>
                   </div>
                 </div>
@@ -275,7 +277,7 @@ const Workforce = () => {
                     <span className="info-icon">✉️</span>
                   </div>
                   <div className="info-content-wrapper">
-                    <strong>Email</strong>
+                    <strong>{t('workforcePage.email')}</strong>
                     <p>info@livestockprofessionals.com</p>
                   </div>
                 </div>
@@ -284,7 +286,7 @@ const Workforce = () => {
                     <span className="info-icon">📞</span>
                   </div>
                   <div className="info-content-wrapper">
-                    <strong>Phone</strong>
+                    <strong>{t('workforcePage.phone')}</strong>
                     <p>+92 333 3132333</p>
                   </div>
                 </div>
@@ -293,12 +295,12 @@ const Workforce = () => {
           </div>
 
           <div className="workforce-form-container glass-card">
-            <h2 className="form-title">Workforce Registration</h2>
+            <h2 className="form-title">{t('workforcePage.formTitle')}</h2>
 
             <form onSubmit={handleSubmit} className="workforce-form">
               <div className="form-group full-width">
                 <label htmlFor="workerType">
-                  Worker Type <span className="required">*</span>
+                  {t('workforcePage.workerType')} <span className="required">*</span>
                 </label>
                 <div className="worker-type-grid">
                   {workerTypes.map(type => (
@@ -331,7 +333,7 @@ const Workforce = () => {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="firstName">
-                    First Name <span className="required">*</span>
+                    {t('workforcePage.firstName')} <span className="required">*</span>
                   </label>
                   <input
                     type="text"
@@ -340,7 +342,7 @@ const Workforce = () => {
                     value={formData.firstName}
                     onChange={handleChange}
                     className={errors.firstName ? 'error' : ''}
-                    placeholder="Enter first name"
+                    placeholder={t('workforcePage.enterFirstName')}
                   />
                   {errors.firstName && (
                     <span className="error-message">{errors.firstName}</span>
@@ -349,7 +351,7 @@ const Workforce = () => {
 
                 <div className="form-group">
                   <label htmlFor="lastName">
-                    Last Name <span className="required">*</span>
+                    {t('workforcePage.lastName')} <span className="required">*</span>
                   </label>
                   <input
                     type="text"
@@ -358,7 +360,7 @@ const Workforce = () => {
                     value={formData.lastName}
                     onChange={handleChange}
                     className={errors.lastName ? 'error' : ''}
-                    placeholder="Enter last name"
+                    placeholder={t('workforcePage.enterLastName')}
                   />
                   {errors.lastName && (
                     <span className="error-message">{errors.lastName}</span>
@@ -369,7 +371,7 @@ const Workforce = () => {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="email">
-                    Email Address <span className="required">*</span>
+                    {t('workforcePage.emailAddress')} <span className="required">*</span>
                   </label>
                   <input
                     type="email"
@@ -378,7 +380,7 @@ const Workforce = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className={errors.email ? 'error' : ''}
-                    placeholder="your.email@example.com"
+                    placeholder={t('workforcePage.enterEmail')}
                   />
                   {errors.email && (
                     <span className="error-message">{errors.email}</span>
@@ -387,7 +389,7 @@ const Workforce = () => {
 
                 <div className="form-group">
                   <label htmlFor="phone">
-                    Phone Number <span className="required">*</span>
+                    {t('workforcePage.phoneNumber')} <span className="required">*</span>
                   </label>
                   <input
                     type="tel"
@@ -396,7 +398,7 @@ const Workforce = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     className={errors.phone ? 'error' : ''}
-                    placeholder="+92 XXX XXXXXXX"
+                    placeholder={t('workforcePage.enterPhone')}
                   />
                   {errors.phone && (
                     <span className="error-message">{errors.phone}</span>
@@ -407,7 +409,7 @@ const Workforce = () => {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="passportCnic">
-                    Passport No / CNIC No
+                    {t('workforcePage.passportCnic')}
                   </label>
                   <input
                     type="text"
@@ -415,13 +417,13 @@ const Workforce = () => {
                     name="passportCnic"
                     value={formData.passportCnic}
                     onChange={handleChange}
-                    placeholder="Enter Passport Number or CNIC Number"
+                    placeholder={t('workforcePage.enterPassport')}
                   />
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="rvmpNumber">
-                    RVMP Number
+                    {t('workforcePage.rvmpNumber')}
                   </label>
                   <input
                     type="text"
@@ -429,14 +431,14 @@ const Workforce = () => {
                     name="rvmpNumber"
                     value={formData.rvmpNumber}
                     onChange={handleChange}
-                    placeholder="Enter RVMP Number"
+                    placeholder={t('workforcePage.enterRVMP')}
                   />
                 </div>
               </div>
 
               <div className="form-group full-width">
                 <label htmlFor="address">
-                  Address <span className="required">*</span>
+                  {t('workforcePage.address')} <span className="required">*</span>
                 </label>
                 <input
                   type="text"
@@ -445,7 +447,7 @@ const Workforce = () => {
                   value={formData.address}
                   onChange={handleChange}
                   className={errors.address ? 'error' : ''}
-                  placeholder="Enter your address"
+                  placeholder={t('workforcePage.enterAddress')}
                 />
                 {errors.address && (
                   <span className="error-message">{errors.address}</span>
@@ -455,7 +457,7 @@ const Workforce = () => {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="city">
-                    City <span className="required">*</span>
+                    {t('workforcePage.city')} <span className="required">*</span>
                   </label>
                   <input
                     type="text"
@@ -464,7 +466,7 @@ const Workforce = () => {
                     value={formData.city}
                     onChange={handleChange}
                     className={errors.city ? 'error' : ''}
-                    placeholder="Enter city"
+                    placeholder={t('workforcePage.enterCity')}
                   />
                   {errors.city && (
                     <span className="error-message">{errors.city}</span>
@@ -472,47 +474,47 @@ const Workforce = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="province">Province</label>
+                  <label htmlFor="province">{t('workforcePage.province')}</label>
                   <input
                     type="text"
                     id="province"
                     name="province"
                     value={formData.province}
                     onChange={handleChange}
-                    placeholder="Enter province"
+                    placeholder={t('workforcePage.enterProvince')}
                   />
                 </div>
               </div>
 
               <div className="form-group full-width">
-                <label htmlFor="country">Country</label>
+                <label htmlFor="country">{t('workforcePage.country')}</label>
                 <input
                   type="text"
                   id="country"
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
-                  placeholder="Enter country"
+                  placeholder={t('workforcePage.enterCountry')}
                 />
               </div>
 
               <div className="form-row">
                 <div className="form-group">
-                  <label htmlFor="experience">Years of Experience</label>
+                  <label htmlFor="experience">{t('workforcePage.experience')}</label>
                   <input
                     type="text"
                     id="experience"
                     name="experience"
                     value={formData.experience}
                     onChange={handleChange}
-                    placeholder="e.g., 5 years"
+                    placeholder={t('workforcePage.enterExperience')}
                   />
                 </div>
               </div>
 
               <div className="form-group full-width">
                 <div className="education-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                  <label htmlFor="education">Education</label>
+                  <label htmlFor="education">{t('workforcePage.education')}</label>
                   <button
                     type="button"
                     onClick={addEducation}
@@ -531,7 +533,7 @@ const Workforce = () => {
                       fontWeight: 600
                     }}
                   >
-                    <span>+</span> Add Education
+                    <span>+</span> {t('workforcePage.addEducation')}
                   </button>
                 </div>
                 {educationEntries.map((education, index) => (
@@ -540,7 +542,7 @@ const Workforce = () => {
                       type="text"
                       value={education.value}
                       onChange={(e) => handleEducationChange(education.id, e.target.value)}
-                      placeholder="e.g., BSc Agriculture"
+                      placeholder={t('workforcePage.enterEducation')}
                       style={{ flex: 1 }}
                       className={errors[`education_${education.id}`] ? 'error' : ''}
                     />
@@ -569,38 +571,38 @@ const Workforce = () => {
               </div>
 
               <div className="form-group full-width">
-                <label htmlFor="skills">Skills & Specializations</label>
+                <label htmlFor="skills">{t('workforcePage.skills')}</label>
                 <textarea
                   id="skills"
                   name="skills"
                   value={formData.skills}
                   onChange={handleChange}
                   rows="3"
-                  placeholder="List your skills and specializations"
+                  placeholder={t('workforcePage.enterSkills')}
                 />
               </div>
 
               <div className="form-group full-width">
-                <label htmlFor="availability">Availability</label>
+                <label htmlFor="availability">{t('workforcePage.availability')}</label>
                 <input
                   type="text"
                   id="availability"
                   name="availability"
                   value={formData.availability}
                   onChange={handleChange}
-                  placeholder="e.g., Full-time, Part-time, Contract"
+                  placeholder={t('workforcePage.enterAvailability')}
                 />
               </div>
 
               <div className="form-group full-width">
-                <label htmlFor="additionalInfo">Additional Information</label>
+                <label htmlFor="additionalInfo">{t('workforcePage.additionalInfo')}</label>
                 <textarea
                   id="additionalInfo"
                   name="additionalInfo"
                   value={formData.additionalInfo}
                   onChange={handleChange}
                   rows="4"
-                  placeholder="Any additional information you'd like to share"
+                  placeholder={t('workforcePage.enterAdditionalInfo')}
                 />
               </div>
 
@@ -613,7 +615,7 @@ const Workforce = () => {
                 className="submit-button btn-modern"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Submitting...' : 'Submit Registration'}
+                {isSubmitting ? t('workforcePage.submitting') : t('workforcePage.submit')}
               </button>
             </form>
           </div>

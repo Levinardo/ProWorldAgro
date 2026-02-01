@@ -231,7 +231,6 @@ const Registration = () => {
     <div className="registration-page">
       <div className="container">
         <div className="registration-header glass-card">
-          <h1>{t('registration.title')}</h1>
           <h2>{t('registration.subtitle')}</h2>
           <p className="registration-description">{t('registration.description')}</p>
         </div>

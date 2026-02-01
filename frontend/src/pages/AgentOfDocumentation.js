@@ -1,54 +1,56 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import './AgentOfDocumentation.css';
 
 const AgentOfDocumentation = () => {
+  const { t } = useTranslation();
   return (
     <div className="agent-doc-page">
       {/* Services Section */}
       <section className="key-services-section">
         <div className="container">
-          <h2 className="marketplace-title">Our Complete Service Package</h2>
+          <h2 className="marketplace-title">{t('agentOfDocumentationPage.servicesTitle')}</h2>
           
           <div className="services-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))' }}>
             {/* Service 1 */}
             <div className="service-icon-card" style={{ textAlign: 'left', padding: '2rem' }}>
               <div className="service-icon" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>1</div>
-              <h3 className="service-icon-title" style={{ marginBottom: '1rem' }}>Visa Documentation & Application Support</h3>
+              <h3 className="service-icon-title" style={{ marginBottom: '1rem' }}>{t('agentOfDocumentationPage.service1Title')}</h3>
               <p style={{ fontSize: '0.95rem', color: '#7f8c8d', marginBottom: '1rem', lineHeight: '1.6' }}>
-                We prepare and organise all documents required for a successful Schengen visa application:
+                {t('agentOfDocumentationPage.service1Desc')}
               </p>
               <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1rem' }}>
                 <li style={{ fontSize: '0.9rem', color: '#7f8c8d', marginBottom: '0.5rem', paddingLeft: '1.5rem', position: 'relative' }}>
-                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> Visa guidance and checklist
+                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> {t('agentOfDocumentationPage.service1Item1')}
                 </li>
                 <li style={{ fontSize: '0.9rem', color: '#7f8c8d', marginBottom: '0.5rem', paddingLeft: '1.5rem', position: 'relative' }}>
-                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> Application form assistance
+                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> {t('agentOfDocumentationPage.service1Item2')}
                 </li>
                 <li style={{ fontSize: '0.9rem', color: '#7f8c8d', marginBottom: '0.5rem', paddingLeft: '1.5rem', position: 'relative' }}>
-                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> Event invitation request letter
+                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> {t('agentOfDocumentationPage.service1Item3')}
                 </li>
                 <li style={{ fontSize: '0.9rem', color: '#7f8c8d', marginBottom: '0.5rem', paddingLeft: '1.5rem', position: 'relative' }}>
-                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> Company/Business Introduction Letter
+                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> {t('agentOfDocumentationPage.service1Item4')}
                 </li>
                 <li style={{ fontSize: '0.9rem', color: '#7f8c8d', marginBottom: '0.5rem', paddingLeft: '1.5rem', position: 'relative' }}>
-                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> Employer NOC / personal profession cover letter
+                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> {t('agentOfDocumentationPage.service1Item5')}
                 </li>
                 <li style={{ fontSize: '0.9rem', color: '#7f8c8d', marginBottom: '0.5rem', paddingLeft: '1.5rem', position: 'relative' }}>
-                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> Bank statement formatting & financial documentation
+                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> {t('agentOfDocumentationPage.service1Item6')}
                 </li>
                 <li style={{ fontSize: '0.9rem', color: '#7f8c8d', marginBottom: '0.5rem', paddingLeft: '1.5rem', position: 'relative' }}>
-                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> Travel itinerary
+                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> {t('agentOfDocumentationPage.service1Item7')}
                 </li>
                 <li style={{ fontSize: '0.9rem', color: '#7f8c8d', marginBottom: '0.5rem', paddingLeft: '1.5rem', position: 'relative' }}>
-                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> Hotel booking & flight reservation
+                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> {t('agentOfDocumentationPage.service1Item8')}
                 </li>
                 <li style={{ fontSize: '0.9rem', color: '#7f8c8d', marginBottom: '0.5rem', paddingLeft: '1.5rem', position: 'relative' }}>
-                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> Appointment booking & file review before submission
+                  <span style={{ position: 'absolute', left: 0, color: '#1f5a3a' }}>•</span> {t('agentOfDocumentationPage.service1Item9')}
                 </li>
               </ul>
               <div style={{ marginTop: '1.5rem', padding: '1rem', background: '#e3f2fd', borderRadius: '8px', fontSize: '0.9rem', color: '#1f5a3a' }}>
-                <strong>Objective:</strong> Increase your visa success rate with a professionally arranged file.
+                <strong>{t('agentOfDocumentationPage.service1Objective')}</strong> {t('agentOfDocumentationPage.service1ObjectiveText')}
               </div>
             </div>
 
@@ -57,22 +59,22 @@ const AgentOfDocumentation = () => {
               <div key={num} className="service-icon-card" style={{ textAlign: 'left', padding: '2rem' }}>
                 <div className="service-icon" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{num}</div>
                 <h3 className="service-icon-title" style={{ marginBottom: '1rem' }}>
-                  {num === 2 ? "Sommet de l'Élevage Event Registration" :
-                   num === 3 ? "Investor / Business Profile Preparation" :
-                   num === 4 ? "Coordination With Event Organisers & Exhibitors" :
-                   num === 5 ? "Travel & Logistics Documentation" :
-                   num === 6 ? "Advisory for Pakistani Investors" :
-                   num === 7 ? "Translation & Professional Communication" :
-                   "Attendance Certificate & Reimbursement File"}
+                  {num === 2 ? t('agentOfDocumentationPage.service2Title') :
+                   num === 3 ? t('agentOfDocumentationPage.service3Title') :
+                   num === 4 ? t('agentOfDocumentationPage.service4Title') :
+                   num === 5 ? t('agentOfDocumentationPage.service5Title') :
+                   num === 6 ? t('agentOfDocumentationPage.service6Title') :
+                   num === 7 ? t('agentOfDocumentationPage.service7Title') :
+                   t('agentOfDocumentationPage.service8Title')}
                 </h3>
                 <p style={{ fontSize: '0.95rem', color: '#7f8c8d', marginBottom: '1rem', lineHeight: '1.6' }}>
-                  {num === 2 ? "We complete all registration tasks on your behalf." :
-                   num === 3 ? "We design a professional profile package for international networking." :
-                   num === 4 ? "We act as your liaison to coordinate with event organisers and exhibitors." :
-                   num === 5 ? "We prepare all travel-related paperwork." :
-                   num === 6 ? "Customized guidance for Pakistani investors." :
-                   num === 7 ? "We provide translation and professional communication services." :
-                   "Full Participation Documentation File preparation."}
+                  {num === 2 ? t('agentOfDocumentationPage.service2Desc') :
+                   num === 3 ? t('agentOfDocumentationPage.service3Desc') :
+                   num === 4 ? t('agentOfDocumentationPage.service4Desc') :
+                   num === 5 ? t('agentOfDocumentationPage.service5Desc') :
+                   num === 6 ? t('agentOfDocumentationPage.service6Desc') :
+                   num === 7 ? t('agentOfDocumentationPage.service7Desc') :
+                   t('agentOfDocumentationPage.service8Desc')}
                 </p>
               </div>
             ))}
@@ -83,10 +85,16 @@ const AgentOfDocumentation = () => {
       {/* Why Choose Us Section */}
       <section className="key-services-section">
         <div className="container">
-          <h2 className="marketplace-title">Why Pakistani Investors Prefer Using an Agent of Documentation</h2>
+          <h2 className="marketplace-title">{t('agentOfDocumentationPage.whyTitle')}</h2>
           <div className="services-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
-            {['Saves time and confusion', 'Avoids mistakes in visa file', 'Professional guidance for a foreign event', 
-              'Stronger business networking', 'Well-presented profiles improve credibility', 'Stress-free coordination and communication'].map((benefit, idx) => (
+            {[
+              t('agentOfDocumentationPage.why1'),
+              t('agentOfDocumentationPage.why2'),
+              t('agentOfDocumentationPage.why3'),
+              t('agentOfDocumentationPage.why4'),
+              t('agentOfDocumentationPage.why5'),
+              t('agentOfDocumentationPage.why6')
+            ].map((benefit, idx) => (
               <div key={idx} className="service-icon-card">
                 <div className="service-icon">✅</div>
                 <h3 className="service-icon-title">{benefit}</h3>
@@ -99,10 +107,14 @@ const AgentOfDocumentation = () => {
       {/* Add-Ons Section */}
       <section className="key-services-section">
         <div className="container">
-          <h2 className="marketplace-title">Extra Add-Ons (Optional)</h2>
+          <h2 className="marketplace-title">{t('agentOfDocumentationPage.addonsTitle')}</h2>
           <div className="services-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
-            {['Group travel management for Pakistani delegations', 'Media coverage or photography during event', 
-              'WhatsApp guidance during travel', 'Support in applying for future livestock and agriculture events in Europe'].map((addon, idx) => (
+            {[
+              t('agentOfDocumentationPage.addon1'),
+              t('agentOfDocumentationPage.addon2'),
+              t('agentOfDocumentationPage.addon3'),
+              t('agentOfDocumentationPage.addon4')
+            ].map((addon, idx) => (
               <div key={idx} className="service-icon-card">
                 <div className="service-icon">🎯</div>
                 <h3 className="service-icon-title">{addon}</h3>
@@ -117,12 +129,11 @@ const AgentOfDocumentation = () => {
         <div className="container">
           <div className="membership-content">
             <p className="membership-text">
-              <strong>Ready to make your Sommet de l'Élevage visit a success?</strong><br />
-              Let us handle all the documentation, coordination, and professional support so you can focus on 
-              what matters most: building international partnerships and exploring investment opportunities.
+              <strong>{t('agentOfDocumentationPage.contactTitle')}</strong><br />
+              {t('agentOfDocumentationPage.contactText')}
             </p>
             <Link to="/registration" className="btn-gold">
-              Register Now &gt;
+              {t('agentOfDocumentationPage.registerNow')}
             </Link>
           </div>
         </div>

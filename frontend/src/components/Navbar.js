@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher';
 import './Navbar.css';
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -36,8 +38,8 @@ const Navbar = () => {
               decoding="async"
             />
             <div className="brand-text-container">
-              <span className="brand-text">LIVESTOCK <span className="brand-text-brown">Professionals</span></span>
-              <span className="brand-tagline">Pakistan's Gateway to Global Livestock & Agriculture</span>
+              <span className="brand-text">{t('navbar.brandText')}</span>
+              <span className="brand-tagline">{t('navbar.brandTagline')}</span>
             </div>
           </Link>
 
@@ -48,7 +50,7 @@ const Navbar = () => {
                   to="/" 
                   className={isActive('/') ? 'active' : ''}
                 >
-                  Home
+                  {t('nav.home')}
                 </Link>
               </li>
               <li>
@@ -56,7 +58,7 @@ const Navbar = () => {
                   to="/about" 
                   className={isActive('/about') ? 'active' : ''}
                 >
-                  About Us
+                  {t('nav.about')}
                 </Link>
               </li>
               <li>
@@ -64,7 +66,7 @@ const Navbar = () => {
                   to="/services" 
                   className={isActive('/services') ? 'active' : ''}
                 >
-                  Services
+                  {t('nav.services')}
                 </Link>
               </li>
               <li>
@@ -72,7 +74,7 @@ const Navbar = () => {
                   to="/marketplace" 
                   className={isActive('/marketplace') ? 'active' : ''}
                 >
-                  Marketplace
+                  {t('nav.marketplace')}
                 </Link>
               </li>
               <li>
@@ -80,7 +82,7 @@ const Navbar = () => {
                   to="/workforce" 
                   className={isActive('/workforce') ? 'active' : ''}
                 >
-                  Workforce
+                  {t('nav.workforce')}
                 </Link>
               </li>
               <li>
@@ -88,7 +90,7 @@ const Navbar = () => {
                   to="/upcoming-events" 
                   className={isActive('/upcoming-events') ? 'active' : ''}
                 >
-                  Training Hub
+                  {t('nav.trainingHub')}
                 </Link>
               </li>
               <li>
@@ -96,7 +98,7 @@ const Navbar = () => {
                   to="/contact" 
                   className={isActive('/contact') ? 'active' : ''}
                 >
-                  Contact
+                  {t('nav.contact')}
                 </Link>
               </li>
             </ul>
@@ -121,7 +123,7 @@ const Navbar = () => {
               className={isActive('/') ? 'active' : ''}
               onClick={closeMenu}
             >
-              Home
+              {t('nav.home')}
             </Link>
           </li>
           <li>
@@ -130,7 +132,7 @@ const Navbar = () => {
               className={isActive('/about') ? 'active' : ''}
               onClick={closeMenu}
             >
-              About Us
+              {t('nav.about')}
             </Link>
           </li>
           <li>
@@ -139,7 +141,7 @@ const Navbar = () => {
               className={isActive('/services') ? 'active' : ''}
               onClick={closeMenu}
             >
-              Services
+              {t('nav.services')}
             </Link>
           </li>
           <li>
@@ -148,7 +150,7 @@ const Navbar = () => {
               className={isActive('/marketplace') ? 'active' : ''}
               onClick={closeMenu}
             >
-              Marketplace
+              {t('nav.marketplace')}
             </Link>
           </li>
           <li>
@@ -157,7 +159,7 @@ const Navbar = () => {
               className={isActive('/workforce') ? 'active' : ''}
               onClick={closeMenu}
             >
-              Workforce
+              {t('nav.workforce')}
             </Link>
           </li>
           <li>
@@ -166,7 +168,7 @@ const Navbar = () => {
               className={isActive('/upcoming-events') ? 'active' : ''}
               onClick={closeMenu}
             >
-              Training Hub
+              {t('nav.trainingHub')}
             </Link>
           </li>
           <li>
@@ -175,7 +177,7 @@ const Navbar = () => {
               className={isActive('/contact') ? 'active' : ''}
               onClick={closeMenu}
             >
-              Contact
+              {t('nav.contact')}
             </Link>
           </li>
         </ul>

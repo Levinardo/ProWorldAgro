@@ -1,69 +1,72 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import VisitorStats from '../components/VisitorStats';
 import './Home.css';
 
 const Home = () => {
+  const { t } = useTranslation();
 
   const keyServices = [
     {
       sprite: '/icons/icons1.png',
       iconClass: 'icon-expos',
-      title: 'Expos & Documentation',
-      description: 'International event participation and documentation support'
+      title: t('homePage.service1'),
+      description: t('homePage.service1Desc')
     },
     {
       sprite: '/icons/icons2.png',
       iconClass: 'icon-veterinary',
-      title: 'Veterinary Experts',
-      description: 'Connect with certified veterinary professionals'
+      title: t('homePage.service2'),
+      description: t('homePage.service2Desc')
     },
     {
       sprite: '/icons/icons3.png',
       iconClass: 'icon-marketplace',
-      title: 'Livestock & Agriculture Marketplace',
-      description: 'Buy, sell, and trade livestock and agricultural products'
+      title: t('homePage.service3'),
+      description: t('homePage.service3Desc')
     },
     {
       sprite: '/icons/icons4.png',
       iconClass: 'icon-workforce',
-      title: 'Skilled Workforce',
-      description: 'Access to trained agricultural and livestock professionals'
+      title: t('homePage.service4'),
+      description: t('homePage.service4Desc')
     },
     {
       sprite: '/icons/icons5.png',
       iconClass: 'icon-training',
-      title: 'Training Hub',
-      description: 'Educational programs and professional development'
+      title: t('homePage.service5'),
+      description: t('homePage.service5Desc')
     },
     {
       sprite: '/icons/icons1.png',
       iconClass: 'icon-consultancy',
-      title: 'Farm Consultancy',
-      description: 'Expert advice for modern farming practices'
+      title: t('homePage.service6'),
+      description: t('homePage.service6Desc')
     },
     {
       sprite: '/icons/icons2.png',
       iconClass: 'icon-agriculture-experts',
-      title: 'Agriculture Experts',
-      description: 'Connect with certified agriculture professionals and specialists'
+      title: t('homePage.service7'),
+      description: t('homePage.service7Desc')
     }
   ];
 
   const marketplaceCategories = [
     {
       image: '/cowseeds/1.png',
-      title: 'Cattle & Buffalo',
-      buttonText: 'View Listings >'
+      title: t('homePage.category1'),
+      buttonText: t('homePage.category1Button')
     },
     {
       image: '/cowseeds/2.png',
-      title: 'Seeds & Fertilizers',
-      buttonText: 'Browse Products >'
+      title: t('homePage.category2'),
+      buttonText: t('homePage.category2Button')
     },
     {
       image: '/cowseeds/3.png',
-      title: 'Farm Equipment',
-      buttonText: 'Explore Equipment >'
+      title: t('homePage.category3'),
+      buttonText: t('homePage.category3Button')
     }
   ];
 
@@ -82,23 +85,22 @@ const Home = () => {
         <div className="hero-content-wrapper">
           <div className="hero-content">
             <div className="hero-text-content">
-              <h1 className="hero-main-title">Connecting Pakistan's 
-                <br />Livestock & Agriculture</h1>
-              <p className="hero-brown-text">with the World</p>
-              <p className="hero-subtitle">Official Documentation Partner - Sommet de l'Élevage - France</p>
+              <h1 className="hero-main-title">{t('homePage.heroTitle')}</h1>
+              <p className="hero-brown-text">{t('homePage.heroSubtitle')}</p>
+              <p className="hero-subtitle">{t('homePage.heroDescription')}</p>
             </div>
           </div>
         </div>
         <div className="hero-buttons-wrapper">
           <div className="hero-buttons">
             <Link to="/registration" className="btn-hero-green">
-              Register for Sommet de l'Élevage &gt;
+              {t('homePage.registerSommet')}
             </Link>
             <span className="btn-hero-gold" style={{ cursor: 'default' }}>
-              Explore Marketplace &gt;
+              {t('homePage.exploreMarketplace')}
             </span>
             <Link to="/workforce" className="btn-hero-gold">
-              Register as Worker &gt;
+              {t('homePage.registerWorker')}
             </Link>
           </div>
         </div>
@@ -131,12 +133,12 @@ const Home = () => {
         <div className="container">
           <div className="mission-vision-grid">
             <div className="mission-vision-item">
-              <h2 className="mission-vision-heading">Our Mission</h2>
-              <p className="mission-vision-text">Modernizing Pakistan's Livestock and Agriculture Industry</p>
+              <h2 className="mission-vision-heading">{t('homePage.missionTitle')}</h2>
+              <p className="mission-vision-text">{t('homePage.missionText')}</p>
             </div>
             <div className="mission-vision-item">
-              <h2 className="mission-vision-heading">Our Vision</h2>
-              <p className="mission-vision-text">South Asia's Leading Agri-Digital Platform</p>
+              <h2 className="mission-vision-heading">{t('homePage.visionTitle')}</h2>
+              <p className="mission-vision-text">{t('homePage.visionText')}</p>
               </div>
             </div>
           </div>
@@ -145,10 +147,10 @@ const Home = () => {
       {/* Marketplace Section */}
       <section className="marketplace-section">
         <div className="container">
-          <h2 className="marketplace-title">Livestock & Agriculture Marketplace</h2>
+          <h2 className="marketplace-title">{t('homePage.marketplaceTitle')}</h2>
           <div className="marketplace-separator"></div>
           <div className="marketplace-subtitle-wrapper">
-            <p className="marketplace-subtitle">Buy • Sell • Connect • Grow</p>
+            <p className="marketplace-subtitle">{t('homePage.marketplaceSubtitle')}</p>
           </div>
           <div className="marketplace-cards">
             {marketplaceCategories.map((category, index) => (
@@ -172,10 +174,10 @@ const Home = () => {
           </div>
           <div className="marketplace-cta-buttons">
             <Link to="/marketplace" className="btn-gold">
-              Post a Listing &gt;
+              {t('homePage.postListing')}
             </Link>
             <Link to="/marketplace" className="btn-gold">
-              View All Listings &gt;
+              {t('homePage.viewAllListings')}
             </Link>
           </div>
           </div>
@@ -189,7 +191,7 @@ const Home = () => {
         ></div>
         <div className="container">
           <div className="membership-content">
-            <p className="membership-text">Become a Verified Member of Pakistan's Global Agriculture Network</p>
+            <p className="membership-text">{t('homePage.membershipText')}</p>
             {/* <Link to="/registration" className="btn-gold">
               Get Verified Now &gt;
             </Link> */}
@@ -202,14 +204,13 @@ const Home = () => {
         <div className="container">
           <div className="participants-content">
             <div className="participants-text-content">
-              <h2 className="participants-title">Pakistani People at Sommet de l'Élevage</h2>
-              <p className="participants-subtitle">Join Pakistan's Growing Presence at the World's Premier Livestock & Agriculture Event</p>
+              <h2 className="participants-title">{t('homePage.pakistaniParticipantsTitle')}</h2>
+              <p className="participants-subtitle">{t('homePage.pakistaniParticipantsSubtitle')}</p>
               <p className="participants-description">
-                Pakistani professionals, farmers, and agricultural experts are making their mark at Sommet de l'Élevage in France. 
-                Be part of this international platform and connect with global leaders in livestock and agriculture.
+                {t('homePage.pakistaniParticipantsDesc')}
               </p>
               <Link to="/official-partner" className="btn-gold participants-cta">
-                Learn More & Register &gt;
+                {t('homePage.learnMoreRegister')}
               </Link>
             </div>
             <div className="participants-image-content">
@@ -217,19 +218,19 @@ const Home = () => {
                 <div className="participant-image-card">
                   <div className="participant-image-placeholder">
                     <span className="participant-icon">👨‍🌾</span>
-                    <p>Pakistani Farmers</p>
+                    <p>{t('homePage.pakistaniFarmers')}</p>
                   </div>
                 </div>
                 <div className="participant-image-card">
                   <div className="participant-image-placeholder">
                     <span className="participant-icon">👨‍⚕️</span>
-                    <p>Veterinary Experts</p>
+                    <p>{t('homePage.veterinaryExperts')}</p>
                   </div>
                 </div>
                 <div className="participant-image-card">
                   <div className="participant-image-placeholder">
                     <span className="participant-icon">🌾</span>
-                    <p>Agriculture Professionals</p>
+                    <p>{t('homePage.agricultureProfessionals')}</p>
                   </div>
                 </div>
               </div>
@@ -253,9 +254,9 @@ const Home = () => {
         </div>
         <div className="official-partner-features">
           <ul className="official-partner-features-list">
-            <li>✓ Trade & investment opportunities</li>
-            <li>✓ Livestock, agriculture, dairy, beef, sheep & poultry focus</li>
-            <li>✓ Networking with international exhibitors</li>
+            <li>✓ {t('homePage.feature1')}</li>
+            <li>✓ {t('homePage.feature2')}</li>
+            <li>✓ {t('homePage.feature3')}</li>
           </ul>
         </div>
         <div className="official-partner-overlay">
@@ -266,13 +267,18 @@ const Home = () => {
                 alt="Sommet de l'Élevage Logo" 
                 className="official-partner-logo"
               />
-              <p>Official Partner - Sommet de l'Élevage, France</p>
+              <p>{t('homePage.officialPartnerLabel')}</p>
             </div>
             <Link to="/official-partner" className="btn-gold official-partner-button">
-              Register for Sommet 2026 &gt;
+              {t('homePage.registerSommet2026')}
             </Link>
           </div>
         </div>
+      </section>
+
+      {/* Visitor Statistics Section */}
+      <section className="visitor-stats-section">
+        <VisitorStats />
       </section>
     </div>
   );

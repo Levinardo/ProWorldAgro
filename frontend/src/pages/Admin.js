@@ -668,7 +668,7 @@ const RegistrationDetailModal = ({ registration, onClose, onStatusUpdate, format
               </div>
               {registration.institutionName && (
                 <div className="detail-item">
-                  <label>Institution</label>
+                  <label>Organization</label>
                   <span>{registration.institutionName}</span>
                 </div>
               )}
